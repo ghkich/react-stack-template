@@ -1,0 +1,48 @@
+@import '../theme.scss';
+
+.layoutContainer {
+  display: flex;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.leftContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: $normalPadding;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+}
+
+.formTitle {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 200;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 80px 30px;
+  width: 615px;
+  background-image: url('../images/bg-flag.svg');
+  background-size: cover;
+}
+
+.backgroundMessage {
+  margin-top: 40px;
+  font-size: 34px;
+  line-height: 52px;
+  text-align: right;
+  font-weight: 200;
+  color: white;
+}

@@ -1,0 +1,42 @@
+@import '../../theme.scss';
+
+.formItemContainer {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.formItemLabel {
+  display: inline-block;
+  margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.formItemFeedback {
+  min-height: 25px;
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+:global {
+  :local(.formItemContainer) {
+    &.form-item-status-error {
+      :local(.formItemFeedback) {
+        color: $error-color;
+      }
+
+      input {
+        border-color: $error-color;
+
+        &:hover {
+          border-color: $error-color;
+        }
+
+        &:focus:not([readonly]) {
+          border: 1px solid $error-color;
+          box-shadow: 0 0 0 1px $error-color;
+        }
+      }
+    }
+  }
+}

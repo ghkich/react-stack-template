@@ -1,0 +1,19 @@
+@import '../theme.scss';
+
+.layoutContainer {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+}
+
+.topbarContainer {
+  height: 70px;
+  background-color: #fff;
+}
+
+.pageContainer {
+  max-width: 1920px;
+  padding: 20px;
+}
