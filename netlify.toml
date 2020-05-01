@@ -1,7 +1,7 @@
 [Settings]
 # Added automatically by the Netlify CLI. It has no effect during normal
 # Git-backed deploys.
-ID = "32b27da0-b6cd-45ca-9426-213cc108cc9c"
+ID = "fc4253ed-5b58-4cdb-901f-f253d6244dc0"
 
 # Settings in the [build] context are global and are applied to all contexts
 [build]
@@ -9,10 +9,8 @@ ID = "32b27da0-b6cd-45ca-9426-213cc108cc9c"
   command = "yarn build"
 
 [context.production.environment]
-  REACT_APP_API_URL = "https://3cvea0l2e6.execute-api.us-east-1.amazonaws.com/v1"
 
 [context.deploy-preview.environment]
-
 
 [context.staging.environment]
 
