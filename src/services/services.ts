@@ -1,11 +1,9 @@
 import { AxiosResponse } from 'axios'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
-import { RoutePaths } from '../routes'
-import { setLocalItem } from '../utils/storage-utils'
+import { removeLocalItem, setLocalItem } from '../utils/storage-utils'
 import API from './api'
-import { useAuthState } from './auth/AuthProvider'
+import { initialAuth, useAuthState } from './auth/AuthProvider'
 import { Auth } from './auth/types'
 import { Endpoints } from './types'
 
@@ -16,18 +14,18 @@ export const handleApiError = (error: any) => {
 export const useLogin = () => {
   const [loading, setLoading] = useState(false)
   const { setAuth } = useAuthState()
-  const history = useHistory()
 
-  const login = async (username: string, password: string, keepMeLoggedIn: boolean) => {
+  const login = async (email: string, password: string, keepMeLoggedIn: boolean) => {
     try {
       setLoading(true)
-      const response: AxiosResponse<Auth> = await API.post(Endpoints.LOGIN, { username, password })
+      const response: AxiosResponse<Auth> = await API.post(Endpoints.LOGIN, { email, password })
       setAuth(response.data)
       if (keepMeLoggedIn) {
         setLocalItem('auth', response.data)
       }
-      history.push(RoutePaths.HOME)
+      return true
     } catch (error) {
+      alert(error)
       handleApiError(error)
     } finally {
       setLoading(false)
@@ -37,5 +35,18 @@ export const useLogin = () => {
   return {
     login,
     authenticating: loading,
+  }
+}
+
+export const useLogout = () => {
+  const { setAuth } = useAuthState()
+
+  const logout = () => {
+    removeLocalItem('auth')
+    setAuth(initialAuth)
+  }
+
+  return {
+    logout,
   }
 }

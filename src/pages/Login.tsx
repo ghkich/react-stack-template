@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
 import Button from '../components/Button/Button'
 import FormItem from '../components/FormItem/FormItem'
@@ -9,7 +10,7 @@ import { RoutePaths } from '../routes'
 import { useLogin } from '../services/services'
 
 type FormData = {
-  username: string
+  email: string
   password: string
   keepMeLoggedIn: boolean
 }
@@ -17,9 +18,13 @@ type FormData = {
 const Login: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
   const { login, authenticating } = useLogin()
+  const history = useHistory()
 
-  const onSubmit = handleSubmit(async ({ username, password, keepMeLoggedIn }) => {
-    login(username, password, keepMeLoggedIn)
+  const onSubmit = handleSubmit(async ({ email, password, keepMeLoggedIn }) => {
+    const authenticated = await login(email, password, keepMeLoggedIn)
+    if (authenticated) {
+      history.push(RoutePaths.HOME)
+    }
   })
 
   return (
@@ -33,12 +38,16 @@ const Login: React.FC = () => {
       }
     >
       <form onSubmit={onSubmit}>
-        <FormItem label="Usuário" feedback={errors.username && 'Informe o nome do usuário'} feedbackStatus="error">
+        <FormItem label="Usuário" feedback={errors.email && 'Informe um email válido'} feedbackStatus="error">
           <Input
-            name="username"
-            autoComplete="username"
+            name="email"
+            autoComplete="email"
             ref={register({
               required: 'Required',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'invalid email address',
+              },
             })}
           />
         </FormItem>

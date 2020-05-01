@@ -9,7 +9,11 @@
 }
 
 .topbarContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   height: 70px;
+  padding: 0 20px;
   background-color: #fff;
 }
 

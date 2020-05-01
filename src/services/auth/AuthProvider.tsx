@@ -5,6 +5,18 @@ import { Auth } from './types'
 
 export const initialAuth: Auth = {
   access_token: '',
+  can_insert_credits: false,
+  can_order_document: false,
+  can_see_financial_transactions: false,
+  can_see_reports: false,
+  customer_id: 0,
+  email: '',
+  id: 0,
+  is_admin: false,
+  last_api_request: '',
+  last_login: '',
+  name: '',
+  phone: '',
 }
 
 const persistedAuth: Auth = getLocalItem('auth')
