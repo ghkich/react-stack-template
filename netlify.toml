@@ -1,0 +1,25 @@
+[Settings]
+# Added automatically by the Netlify CLI. It has no effect during normal
+# Git-backed deploys.
+ID = "32b27da0-b6cd-45ca-9426-213cc108cc9c"
+
+# Settings in the [build] context are global and are applied to all contexts
+[build]
+  publish = "build/"
+  command = "yarn build"
+
+[context.production.environment]
+  REACT_APP_API_URL = "https://3cvea0l2e6.execute-api.us-east-1.amazonaws.com/v1"
+
+[context.deploy-preview.environment]
+
+
+[context.staging.environment]
+
+
+# The following redirect is intended for use with most SPAs that handle
+# routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
