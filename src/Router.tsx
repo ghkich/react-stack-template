@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocati
 
 import AuthenticatedLayout from './layouts/AuthenticatedLayout'
 import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
+import { useAuthState } from './services/auth/AuthProvider'
 
 interface AuthtenticatedRouteProps extends RouteProps {
   authenticated: boolean
@@ -43,7 +44,8 @@ const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({ children, aut
 }
 
 const SwitchRoutes: React.FC = () => {
-  const isAuthenticated = true
+  const { auth } = useAuthState()
+  const isAuthenticated = auth.access_token !== ''
   const location = useLocation()
 
   const isRoutePermitted = (routePath: RoutePaths) => {

@@ -3,12 +3,13 @@ import './App.scss'
 import React from 'react'
 
 import MainRouter from './Router'
+import AuthProvider from './services/auth/AuthProvider'
 
 const App: React.FC = () => {
   return (
-    <div>
+    <AuthProvider>
       <MainRouter />
-    </div>
+    </AuthProvider>
   )
 }
 

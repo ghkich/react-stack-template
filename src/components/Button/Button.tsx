@@ -36,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   to,
   type,
   className,
+  loading,
   ghost,
   block,
   disabled,
@@ -72,7 +73,7 @@ const Button: React.FC<ButtonProps> = ({
       onMouseDown={(e) => e.preventDefault()}
       {...props}
     >
-      {children}
+      {loading ? '...' : children}
     </button>
   )
 }

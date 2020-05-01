@@ -6,6 +6,7 @@ import FormItem from '../components/FormItem/FormItem'
 import Input from '../components/Input/Input'
 import LoginLayout from '../layouts/LoginLayout'
 import { RoutePaths } from '../routes'
+import { useLogin } from '../services/services'
 
 type FormData = {
   username: string
@@ -15,8 +16,10 @@ type FormData = {
 
 const Login: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
-  const onSubmit = handleSubmit(({ username, password, keepMeLoggedIn }) => {
-    console.log(username, password, keepMeLoggedIn)
+  const { login, authenticating } = useLogin()
+
+  const onSubmit = handleSubmit(async ({ username, password, keepMeLoggedIn }) => {
+    login(username, password, keepMeLoggedIn)
   })
 
   return (
@@ -33,6 +36,7 @@ const Login: React.FC = () => {
         <FormItem label="Usuário" feedback={errors.username && 'Informe o nome do usuário'} feedbackStatus="error">
           <Input
             name="username"
+            autoComplete="username"
             ref={register({
               required: 'Required',
             })}
@@ -45,6 +49,7 @@ const Login: React.FC = () => {
           <Input
             name="password"
             type="password"
+            autoComplete="current-password"
             ref={register({
               required: 'Required',
             })}
@@ -56,7 +61,7 @@ const Login: React.FC = () => {
             Continuar logado
           </label>
         </FormItem>
-        <Button type="primary" htmlType="submit" block>
+        <Button type="primary" htmlType="submit" loading={authenticating} block>
           Entrar
         </Button>
       </form>
