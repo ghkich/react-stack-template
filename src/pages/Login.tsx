@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
@@ -8,6 +9,7 @@ import Input from '../components/Input/Input'
 import LoginLayout from '../layouts/LoginLayout'
 import { RoutePaths } from '../routes'
 import { useLogin } from '../services/services'
+import { enteringFromTop } from '../utils/animation-utils'
 
 type FormData = {
   email: string
@@ -27,6 +29,11 @@ const Login: React.FC = () => {
     }
   })
 
+  const hideElementStyle = {
+    opacity: authenticating ? 0 : 1,
+    pointerEvents: authenticating ? 'none' : 'visible',
+  } as React.CSSProperties
+
   return (
     <LoginLayout
       title="Acessar conta"
@@ -38,7 +45,7 @@ const Login: React.FC = () => {
       }
     >
       <form onSubmit={onSubmit}>
-        <FormItem label="Usuário" feedback={errors.email && 'Informe um email válido'} feedbackStatus="error">
+        <FormItem label="E-mail" feedback={errors.email && 'Informe um e-mail válido'} feedbackStatus="error">
           <Input
             name="email"
             autoComplete="email"
@@ -49,10 +56,21 @@ const Login: React.FC = () => {
                 message: 'invalid email address',
               },
             })}
+            disabled={authenticating}
           />
         </FormItem>
         <FormItem label="Senha" feedback={errors.password && 'Informe a senha'} feedbackStatus="error">
-          <Button type="link" style={{ fontSize: 13, position: 'absolute', top: 3, right: 0 }} to={RoutePaths.HOME}>
+          <Button
+            type="link"
+            style={{
+              fontSize: 13,
+              position: 'absolute',
+              top: 3,
+              right: 0,
+              ...hideElementStyle,
+            }}
+            to={RoutePaths.HOME}
+          >
             Esqueci minha senha
           </Button>
           <Input
@@ -62,19 +80,36 @@ const Login: React.FC = () => {
             ref={register({
               required: 'Required',
             })}
+            disabled={authenticating}
           />
         </FormItem>
         <FormItem>
           <label>
-            <input type="checkbox" name="keepMeLoggedIn" ref={register()} />
+            <input type="checkbox" name="keepMeLoggedIn" ref={register()} disabled={authenticating} />
             Continuar logado
           </label>
         </FormItem>
         <Button type="primary" htmlType="submit" loading={authenticating} block>
           Entrar
         </Button>
+        <motion.div
+          style={{
+            position: 'relative',
+            zIndex: 0,
+            textAlign: 'center',
+            fontSize: 13,
+            margin: '10px auto',
+            userSelect: 'none',
+            opacity: 0.4,
+          }}
+          initial={authenticating ? 'enter' : 'exit'}
+          animate={authenticating ? 'enter' : 'exit'}
+          variants={enteringFromTop}
+        >
+          Verificando credenciais...
+        </motion.div>
       </form>
-      <p style={{ marginTop: 60, fontSize: 14, textAlign: 'center' }}>
+      <p style={{ marginTop: 60, fontSize: 14, textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b> <Button type="link">Crie agora mesmo</Button>
       </p>
     </LoginLayout>

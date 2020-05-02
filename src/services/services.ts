@@ -25,7 +25,6 @@ export const useLogin = () => {
       }
       return true
     } catch (error) {
-      alert(error)
       handleApiError(error)
     } finally {
       setLoading(false)

@@ -1,0 +1,16 @@
+@import '../../../theme.scss';
+
+.statisticsTitle {
+  font-size: 20px;
+}
+
+.statisticsItemsContainer {
+  display: flex;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.statisticItem {
+  flex: 1;
+  margin: 10px;
+}

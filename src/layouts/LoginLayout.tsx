@@ -1,9 +1,9 @@
 import React from 'react'
 
+import { ReactComponent as LogoCBRDocLettering } from '../images/logo-cbrdoc-lettering.svg'
 import styles from './LoginLayout.module.scss'
 
-const logoCBRDocVertical = require('../images/logo-cbrdoc-vertical.svg')
-const logoCBRDocLettering = require('../images/logo-cbrdoc-lettering.svg')
+const logoCBRDocVertical = require('../images/logo-cbrdoc-horizontal.svg')
 
 interface Props {
   title: string
@@ -23,7 +23,7 @@ const LoginLayout: React.FC<Props> = ({ title, backgroundMessage, children }) =>
         </div>
       </div>
       <div className={styles.rightContainer}>
-        <img src={logoCBRDocLettering} alt="CBRdoc - Central Brasileira de Documentos" />
+        <LogoCBRDocLettering color="#aeb5c9" />
         <div className={styles.backgroundMessage}>{backgroundMessage}</div>
       </div>
     </div>

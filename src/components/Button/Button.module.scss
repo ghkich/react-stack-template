@@ -13,8 +13,11 @@
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background-color 0.15s linear, border-color 0.15s linear, box-shadow 0.15s linear;
   position: relative;
+  z-index: 1;
 
   &:focus {
     background-color: transparent;
@@ -24,6 +27,19 @@
     cursor: not-allowed;
     opacity: 0.3;
   }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.loadingIcon {
+  animation: spin 1000ms infinite linear;
 }
 
 :global {
@@ -81,8 +97,15 @@
       }
     }
 
+    &.btn-loading {
+      pointer-events: none;
+      background-color: lighten($primary-color, 5);
+      box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
     &.btn-block {
       width: 100%;
+      padding: 0 10px;
     }
   }
 }

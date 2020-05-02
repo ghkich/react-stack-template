@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
 import { RoutePaths } from '../../routes'
 import styles from './Button.module.scss'
 
@@ -46,8 +47,9 @@ const Button: React.FC<ButtonProps> = ({
   const typeCls = type && `btn-${type}`
   const ghostCls = ghost && 'btn-ghost'
   const blockCls = block && 'btn-block'
+  const loadingCls = loading && 'btn-loading'
 
-  const classNames = clsx([styles.buttonContainer, className, typeCls, ghostCls, blockCls])
+  const classNames = clsx([styles.buttonContainer, className, typeCls, ghostCls, blockCls, loadingCls])
 
   if (href) {
     return (
@@ -73,7 +75,7 @@ const Button: React.FC<ButtonProps> = ({
       onMouseDown={(e) => e.preventDefault()}
       {...props}
     >
-      {loading ? '...' : children}
+      {loading ? <IconLoading className={styles.loadingIcon} /> : children}
     </button>
   )
 }
