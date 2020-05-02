@@ -12,7 +12,7 @@ const API = Axios.create({
 
 export const setAuthorizationHeader = () => {
   const auth: Auth = getLocalItem('auth')
-  return { Authorization: auth.access_token }
+  return { Authorization: `Bearer ${auth.access_token}` }
 }
 
 export default API
