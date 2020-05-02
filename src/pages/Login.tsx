@@ -57,6 +57,7 @@ const Login: React.FC = () => {
               },
             })}
             disabled={authenticating}
+            tabIndex={1}
           />
         </FormItem>
         <FormItem label="Senha" feedback={errors.password && 'Informe a senha'} feedbackStatus="error">
@@ -70,6 +71,7 @@ const Login: React.FC = () => {
               ...hideElementStyle,
             }}
             to={RoutePaths.HOME}
+            tabIndex={5}
           >
             Esqueci minha senha
           </Button>
@@ -81,15 +83,16 @@ const Login: React.FC = () => {
               required: 'Required',
             })}
             disabled={authenticating}
+            tabIndex={2}
           />
         </FormItem>
         <FormItem>
           <label>
-            <input type="checkbox" name="keepMeLoggedIn" ref={register()} disabled={authenticating} />
+            <input type="checkbox" name="keepMeLoggedIn" ref={register()} disabled={authenticating} tabIndex={3} />
             Continuar logado
           </label>
         </FormItem>
-        <Button type="primary" htmlType="submit" loading={authenticating} block>
+        <Button type="primary" htmlType="submit" loading={authenticating} block tabIndex={4}>
           Entrar
         </Button>
         <motion.div
@@ -110,7 +113,10 @@ const Login: React.FC = () => {
         </motion.div>
       </form>
       <p style={{ marginTop: 60, fontSize: 14, textAlign: 'center', ...hideElementStyle }}>
-        <b>Ainda não tem uma conta?</b> <Button type="link">Crie agora mesmo</Button>
+        <b>Ainda não tem uma conta?</b>{' '}
+        <Button type="link" tabIndex={6}>
+          Crie agora mesmo
+        </Button>
       </p>
     </LoginLayout>
   )
