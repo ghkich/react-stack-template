@@ -20,8 +20,9 @@ export const useLogin = () => {
       setLoading(true)
       const response: AxiosResponse<Auth> = await API.post(Endpoints.LOGIN, { email, password })
       setAuth(response.data)
+      setLocalItem('auth', response.data)
       if (keepMeLoggedIn) {
-        setLocalItem('auth', response.data)
+        //TODO: cookie!
       }
       return true
     } catch (error) {

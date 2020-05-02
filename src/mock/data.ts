@@ -1,10 +1,14 @@
 import faker from 'faker'
 
 import { Auth } from '../services/auth/types'
+import { Order } from '../services/types'
 
 // const blowson = require('blowson')
 
 faker.locale = 'pt_BR'
+const blowson = require('blowson')
+
+faker.seed(123)
 
 export const auth: Auth = {
   access_token: faker.random.alphaNumeric(25),
@@ -21,3 +25,30 @@ export const auth: Auth = {
   name: faker.name.findName(),
   phone: faker.phone.phoneNumber('999999999'),
 }
+
+const extendedOrders = blowson({
+  data: [
+    {
+      id: 1,
+      user_id: 1,
+      document_type_id: 1,
+      current_status_id: 4,
+      priority: 0,
+      placed_time: '2020-05-02',
+      estimated_time: '2020-05-09',
+      delivered_time: null,
+    },
+    {
+      id: 50,
+      user_id: 20,
+      document_type_id: 1,
+      current_status_id: 4,
+      priority: 0,
+      placed_time: '2020-04-02',
+      estimated_time: '2020-04-09',
+      delivered_time: null,
+    },
+  ],
+})
+
+export const orders: Order[] = extendedOrders.data

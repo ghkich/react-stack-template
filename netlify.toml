@@ -9,13 +9,13 @@ ID = "fc4253ed-5b58-4cdb-901f-f253d6244dc0"
   command = "yarn build"
 
 [context.production.environment]
-  REACT_APP_API_URL = "https://cbrdoc.jhob.com.br"
+  REACT_APP_API_URL = "https://cors-anywhere.herokuapp.com/https://cbrdoc.jhob.com.br"
 
 [context.deploy-preview.environment]
-  REACT_APP_API_URL = "https://cbrdoc.jhob.com.br"
+  REACT_APP_API_URL = "https://cors-anywhere.herokuapp.com/https://cbrdoc.jhob.com.br"
 
 [context.staging.environment]
-  REACT_APP_API_URL = "https://cbrdoc.jhob.com.br"
+  REACT_APP_API_URL = "https://cors-anywhere.herokuapp.com/https://cbrdoc.jhob.com.br"
 
 
 # The following redirect is intended for use with most SPAs that handle
