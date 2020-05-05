@@ -1,5 +1,4 @@
-import API from '../services/api'
-import { Endpoints } from '../services/types'
+import API, { Endpoints } from '../state/api'
 import { orders } from './data'
 
 export const injectMockAdapterIfPrototype = async () => {
@@ -10,7 +9,7 @@ export const injectMockAdapterIfPrototype = async () => {
 
     const mockAPI = new MockAdapter(API, { delayResponse })
 
-    mockAPI.onPost(Endpoints.LOGIN).reply(200, auth)
+    mockAPI.onPost(Endpoints.LOGIN).reply(403, auth)
 
     const perPage = 10
     let page = 1

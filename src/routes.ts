@@ -3,7 +3,7 @@ import { RouteProps } from 'react-router-dom'
 import Home from './pages/home/Home'
 import Login from './pages/Login'
 import CreateOrder from './pages/orders/CreateOrder'
-import ListOrders from './pages/orders/ListOrders'
+import Orders from './pages/orders/Orders'
 import ViewOrder from './pages/orders/ViewOrder'
 import Register from './pages/Register'
 
@@ -44,7 +44,7 @@ export const authenticatedRoutes: Route[] = [
   {
     exact: true,
     path: RoutePaths.ORDERS,
-    component: ListOrders,
+    component: Orders,
   },
   {
     path: RoutePaths.CREATE_ORDER,

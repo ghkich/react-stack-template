@@ -1,7 +1,3 @@
-export enum Endpoints {
-  LOGIN = '/users/login',
-}
-
 export interface Order {
   id: number
   user_id: number

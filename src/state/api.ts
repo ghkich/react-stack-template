@@ -15,4 +15,8 @@ export const setAuthorizationHeader = () => {
   return { Authorization: `Bearer ${auth.access_token}` }
 }
 
+export enum Endpoints {
+  LOGIN = '/users/login',
+}
+
 export default API

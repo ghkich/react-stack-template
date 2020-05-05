@@ -1,0 +1,46 @@
+@import '../../theme.scss';
+
+.alertContainer {
+  display: flex;
+  padding: 15px;
+  border: 1px solid #999;
+  border-radius: 2px;
+}
+
+.alertIcon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.alertMessage {
+  display: block;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.alertDescription {
+  display: block;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+:global {
+  :local(.alertContainer) {
+    &.alert-error {
+      border-color: $error-color;
+      background-color: $error-bg-color;
+
+      :local(.alertIcon) {
+        color: $error-color;
+      }
+    }
+  }
+
+  :local(.alertMessage) {
+    &.alert-message-with-description {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+}

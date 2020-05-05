@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocati
 import AuthenticatedLayout from './layouts/AuthenticatedLayout'
 import { injectMockAdapterIfPrototype } from './mock/adapter'
 import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
-import { useAuthState } from './services/auth/AuthProvider'
+import { useAuthState } from './state/auth/AuthProvider'
 
 interface AuthtenticatedRouteProps extends RouteProps {
   authenticated: boolean

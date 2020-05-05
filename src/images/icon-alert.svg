@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" viewBox="0 0 24 25">
+    <defs>
+        <path id="icon_alert__a" d="M12 0c.229 0 .439.123.551.322l11.368 20.21c.11.196.108.435-.005.63-.112.194-.32.312-.546.312H.632c-.225 0-.432-.118-.546-.313-.113-.194-.115-.433-.005-.629L11.45.322C11.562.124 11.772 0 12 0zm0 1.921L1.712 20.211h20.576L12 1.921zm0 14.501c.349 0 .632.283.632.632v1.263c0 .348-.283.631-.632.631-.348 0-.631-.283-.631-.631v-1.263c0-.35.283-.632.631-.632zm0-8.842c.349 0 .632.283.632.632v6.315c0 .349-.283.632-.632.632-.348 0-.631-.283-.631-.632V8.212c0-.349.283-.632.631-.632z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(0 .5) translate(0 1)">
+            <mask id="icon_alert__b" fill="#fff">
+                <use xlink:href="#icon_alert__a"/>
+            </mask>
+            <use fill="#000" fill-rule="nonzero" xlink:href="#icon_alert__a"/>
+            <g fill="currentColor" mask="url(#icon_alert__b)">
+                <path d="M0 0H94.255V94.255H0z" transform="translate(-36 -36)"/>
+            </g>
+        </g>
+    </g>
+</svg>
