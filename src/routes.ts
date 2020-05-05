@@ -1,11 +1,11 @@
 import { RouteProps } from 'react-router-dom'
 
 import Home from './pages/home/Home'
-import Login from './pages/Login'
+import Login from './pages/login/Login'
 import CreateOrder from './pages/orders/CreateOrder'
 import Orders from './pages/orders/Orders'
 import ViewOrder from './pages/orders/ViewOrder'
-import Register from './pages/Register'
+import Register from './pages/register/Register'
 
 export enum RoutePaths {
   REGISTER = '/criar-conta',
