@@ -5,7 +5,9 @@ import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import { Provider } from 'react-redux'
 
+import Notification from '../components/Notification/Notification'
 import store from '../features/store'
+import { useUiState } from '../features/ui/slice'
 import MainRouter from './Router'
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetErrorBoundary }) => {
@@ -20,25 +22,24 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetEr
 }
 
 const NotificationGlobal = () => {
-  return null
-  // const { notificationState } = useUIState()
-  // return notificationState && <div>{notificationState.message}</div>
+  const { notifications } = useUiState()
+  return <>{notifications.length > 0 && notifications.map((notification) => <Notification {...notification} />)}</>
 }
 
 const App: React.FC = () => {
   if (process.env.REACT_APP_PROTO) {
-    const { startMirageServers } = require('../mirage/servers')
+    const { startMirageServers } = require('../_mock/servers')
     startMirageServers()
   }
 
   return (
-    <Provider store={store}>
-      <ErrorBoundary fallbackRender={ErrorFallback}>
+    <ErrorBoundary fallbackRender={ErrorFallback}>
+      <Provider store={store}>
         <ReactQueryDevtools initialIsOpen={false} />
         <MainRouter />
         <NotificationGlobal />
-      </ErrorBoundary>
-    </Provider>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 

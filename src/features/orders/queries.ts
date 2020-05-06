@@ -2,7 +2,8 @@ import { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { usePaginatedQuery } from 'react-query'
 
-import API, { getQueryError, setAuthorizationHeader } from '../../api/api'
+import API, { setAuthorizationHeader } from '../../api/config'
+import { getQueryError } from '../../api/errors'
 import { Order } from './types'
 
 type OrderQueryBy = 'customerId' | 'companyId'

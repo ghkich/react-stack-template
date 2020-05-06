@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import API, { ApiError, ApiStatus, Endpoints, ERRORS } from '../../api/api'
+import API from '../../api/config'
+import { ERRORS } from '../../api/errors'
+import { ApiError, ApiStatus, Endpoints } from '../../api/types'
 import { RoutePaths } from '../../app/routes'
 import { removeLocalItem, setLocalItem } from '../../utils/storage-utils'
-import { uiActions } from '../ui/slice'
+import { useDispatchNotification } from '../ui/dispatches'
 import { authActions } from './slice'
 import { AuthState } from './types'
 
@@ -15,6 +17,7 @@ export const useLoginRequest = () => {
   const [status, setStatus] = useState<ApiStatus>()
   const dispatch = useDispatch()
   const history = useHistory()
+  const dispatchNotification = useDispatchNotification()
 
   const call = async (email: string, password: string, keepMeLoggedIn: boolean) => {
     try {
@@ -32,10 +35,7 @@ export const useLoginRequest = () => {
       if (error.response?.status === 401) {
         setError(ERRORS.invalidCredentials)
       } else {
-        uiActions.addNotification({
-          type: 'error',
-          message: ERRORS.serverError.message,
-        })
+        dispatchNotification.error(ERRORS.serverError)
       }
     }
   }

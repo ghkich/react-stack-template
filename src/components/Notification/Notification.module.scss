@@ -1,0 +1,36 @@
+@import '../../app/theme.scss';
+
+.notificationContainer {
+  width: 350px;
+  padding: 15px;
+  margin-left: -175px;
+  background-color: white;
+  border-radius: 2px;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  box-shadow: 0 8px 15px 3px rgba(0, 0, 0, 0.2);
+}
+
+.notificationMessage {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.notificationDescription {
+  display: block;
+  font-size: 14px;
+  line-height: 1.75;
+  text-align: center;
+}
+
+:global {
+  :local(.notificationContainer) {
+    &.notification-error {
+      color: white;
+      background-color: $error-color;
+    }
+  }
+}
