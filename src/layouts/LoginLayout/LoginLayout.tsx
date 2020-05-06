@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { ReactComponent as LogoCBRDocLettering } from '../images/logo-cbrdoc-lettering.svg'
+import { ReactComponent as LogoCBRDocLettering } from '../../images/logo-cbrdoc-lettering.svg'
 import styles from './LoginLayout.module.scss'
 
-const logoCBRDocVertical = require('../images/logo-cbrdoc-horizontal.svg')
+const logoCBRDocVertical = require('../../images/logo-cbrdoc-horizontal.svg')
 
 interface Props {
   title: string

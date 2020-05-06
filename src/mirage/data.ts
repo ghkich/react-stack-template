@@ -1,7 +1,7 @@
 import faker from 'faker'
 
-import { Auth } from '../state/auth/types'
-import { Order } from '../state/order/types'
+import { AuthState } from '../features/auth/types'
+import { Order } from '../features/orders/types'
 
 // const blowson = require('blowson')
 
@@ -10,7 +10,7 @@ const blowson = require('blowson')
 
 faker.seed(123)
 
-export const auth: Auth = {
+export const auth: AuthState = {
   access_token: faker.random.alphaNumeric(25),
   can_insert_credits: faker.random.boolean(),
   can_order_document: faker.random.boolean(),

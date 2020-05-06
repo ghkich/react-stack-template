@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ListOrders from '../orders/components/ListOrders'
+import ListOrders from '../../features/orders/ListOrders'
 
 interface Props {}
 

@@ -1,4 +1,4 @@
-@import '../theme.scss';
+@import '../../app/theme.scss';
 
 .layoutContainer {
   display: flex;
@@ -34,7 +34,7 @@
   align-items: flex-end;
   padding: 80px 30px;
   width: 615px;
-  background-image: url('../images/bg-flag.svg');
+  background-image: url('../../images/bg-flag.svg');
   background-size: cover;
 }
 

@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { RoutePaths } from '../../app/routes'
 import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
-import { RoutePaths } from '../../routes'
 import styles from './Button.module.scss'
 
 type ButtonType = 'primary' | 'success' | 'link'

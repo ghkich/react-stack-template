@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocation } from 'react-router-dom'
 
-import AuthenticatedLayout from './layouts/AuthenticatedLayout'
+import { useAuthState } from '../features/auth/slice'
+import AuthenticatedLayout from '../layouts/AuthenticatedLayout/AuthenticatedLayout'
 import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
-import { useAuthState } from './state/auth/AuthProvider'
 
 interface AuthtenticatedRouteProps extends RouteProps {
   authenticated: boolean
@@ -44,8 +44,8 @@ const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({ children, aut
 }
 
 const SwitchRoutes: React.FC = () => {
-  const { auth } = useAuthState()
-  const isAuthenticated = auth.access_token !== ''
+  const authState = useAuthState()
+  const isAuthenticated = authState.access_token !== ''
   const location = useLocation()
 
   const isRoutePermitted = (routePath: RoutePaths) => {
@@ -65,7 +65,7 @@ const SwitchRoutes: React.FC = () => {
           authenticated={isAuthenticated}
           permitted={isRoutePermitted(route.path)}
         >
-          <AuthenticatedLayout>
+          <AuthenticatedLayout user={authState}>
             <route.component />
           </AuthenticatedLayout>
         </AuthtenticatedRoute>

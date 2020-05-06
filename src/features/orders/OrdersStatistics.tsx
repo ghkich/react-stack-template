@@ -1,6 +1,6 @@
 import React from 'react'
 
-import StatisticCard from '../../../components/StatisticCard/StatisticCard'
+import StatisticCard from '../../components/StatisticCard/StatisticCard'
 import styles from './OrdersStatistics.module.scss'
 
 interface OrdersStatisticsProps {}

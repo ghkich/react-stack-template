@@ -1,4 +1,4 @@
-export interface Auth {
+export interface AuthState {
   access_token: string
   can_insert_credits: boolean
   can_order_document: boolean

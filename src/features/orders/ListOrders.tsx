@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useOrdersQuery } from '../../../state/order/queries'
+import { useOrdersQuery } from './queries'
 
 interface Props {}
 

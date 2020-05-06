@@ -2,9 +2,7 @@ import { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { usePaginatedQuery } from 'react-query'
 
-import API, { setAuthorizationHeader } from '../api'
-import ERRORS from '../errors'
-import { StateError } from '../types'
+import API, { getQueryError, setAuthorizationHeader } from '../../api/api'
 import { Order } from './types'
 
 type OrderQueryBy = 'customerId' | 'companyId'
@@ -40,17 +38,11 @@ export const useOrdersQuery = ({ queryBy, id, filters, perPage }: UseOrdersQuery
 
   const query = usePaginatedQuery([`${queryBy}-${id}-orders-${perPage}-${filters?.status}`, currentPage], fetchOrders)
 
-  let error: StateError | undefined
-
-  if (query.status === 'error') {
-    error = ERRORS.queryFailed
-  }
-
   return {
     data: query.resolvedData,
     status: query.status,
     fetching: query.isFetching,
-    error,
+    error: getQueryError(query.status, query.error),
     pagination: {
       currentPage,
       setCurrentPage,
@@ -58,3 +50,21 @@ export const useOrdersQuery = ({ queryBy, id, filters, perPage }: UseOrdersQuery
     },
   }
 }
+
+// export const useOrdersStatisticsQuery = () => {
+//   const fetchStatistics = async () => {
+//     const response: AxiosResponse<Order[]> = await API.get('orderStatistics', {
+//       headers: { ...setAuthorizationHeader() },
+//     })
+//     return response.data
+//   }
+
+//   const query = useQuery('ordersStatistics', fetchStatistics)
+
+//   return {
+//     data: query.data,
+//     status: query.status,
+//     fetching: query.isFetching,
+//     error: getQueryError(query.status, query.error),
+//   }
+// }

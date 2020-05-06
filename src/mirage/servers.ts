@@ -18,10 +18,15 @@ export const startMirageServers = () => {
       this.timing = delayResponse
 
       this.post('/users/login', () => {
-        if (scenario === 'loginFailed') {
-          return new Response(403)
-        } else {
-          return new Response(200, {}, auth)
+        switch (scenario) {
+          case 'loginUnauthorized':
+            return new Response(401)
+          case 'serverError':
+            return new Response(500)
+          case 'loginUnexpected':
+            return new Response(403)
+          default:
+            return new Response(200, {}, auth)
         }
       })
       this.get('/customers/:id/orders', () => {

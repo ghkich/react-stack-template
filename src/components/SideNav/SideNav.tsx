@@ -3,14 +3,14 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { RoutePaths } from '../../app/routes'
 import { ReactComponent as IconPaperPlane } from '../../images/icon-paper-plane.svg'
 import { ReactComponent as LogoCBRDocLettering } from '../../images/logo-cbrdoc-lettering.svg'
 import { ReactComponent as LogoCBRDocSymbol } from '../../images/logo-cbrdoc-symbol.svg'
-import { RoutePaths } from '../../routes'
 import { springTransition } from '../../utils/animation-utils'
 import { getLocalItem, setLocalItem } from '../../utils/storage-utils'
 import Button from '../Button/Button'
-import styles from './SideMenu.module.scss'
+import styles from './SideNav.module.scss'
 
 interface NavItem {
   id: string
@@ -19,7 +19,7 @@ interface NavItem {
   show?: boolean
 }
 
-interface Props {
+interface SideNavProps {
   mainNavItem: NavItem
   navItems: NavItem[]
 }
@@ -33,7 +33,7 @@ const menuCollapsing = {
   },
 }
 
-const SideMenu: React.FC<Props> = ({ mainNavItem, navItems }) => {
+const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(getLocalItem('menuCollapsed') ? true : false)
 
   const handleToggleCollapse = () => {
@@ -82,4 +82,4 @@ const SideMenu: React.FC<Props> = ({ mainNavItem, navItems }) => {
   )
 }
 
-export default SideMenu
+export default SideNav

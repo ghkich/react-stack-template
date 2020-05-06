@@ -3,9 +3,10 @@ import './App.scss'
 import React from 'react'
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
 import { ReactQueryDevtools } from 'react-query-devtools'
+import { Provider } from 'react-redux'
 
+import store from '../features/store'
 import MainRouter from './Router'
-import AuthProvider from './state/auth/AuthProvider'
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetErrorBoundary }) => {
   return (
@@ -18,19 +19,26 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetEr
   )
 }
 
+const NotificationGlobal = () => {
+  return null
+  // const { notificationState } = useUIState()
+  // return notificationState && <div>{notificationState.message}</div>
+}
+
 const App: React.FC = () => {
   if (process.env.REACT_APP_PROTO) {
-    const { startMirageServers } = require('./mirage/servers')
+    const { startMirageServers } = require('../mirage/servers')
     startMirageServers()
   }
 
   return (
-    <ErrorBoundary fallbackRender={ErrorFallback}>
-      <AuthProvider>
+    <Provider store={store}>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <ReactQueryDevtools initialIsOpen={false} />
         <MainRouter />
-      </AuthProvider>
-    </ErrorBoundary>
+        <NotificationGlobal />
+      </ErrorBoundary>
+    </Provider>
   )
 }
 

@@ -2,13 +2,13 @@ import { motion } from 'framer-motion'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
+import { RoutePaths } from '../../app/routes'
 import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
 import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
-import LoginLayout from '../../layouts/LoginLayout'
-import { RoutePaths } from '../../routes'
-import { useLoginRequest } from '../../state/auth/requests'
+import { useLoginRequest } from '../../features/auth/requests'
+import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
 import { enteringFromTop } from '../../utils/animation-utils'
 
 type FormData = {
