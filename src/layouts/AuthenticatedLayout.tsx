@@ -5,7 +5,7 @@ import Button from '../components/Button/Button'
 import SideMenu from '../components/SideMenu/SideMenu'
 import { RoutePaths } from '../routes'
 import { useAuthState } from '../state/auth/AuthProvider'
-import { useLogout } from '../state/auth/effects'
+import { useLogoutRequest } from '../state/auth/requests'
 import { enteringFromOpacity } from '../utils/animation-utils'
 import styles from './AuthenticatedLayout.module.scss'
 
@@ -13,7 +13,7 @@ interface Props {}
 
 const AuthenticatedLayout: React.FC<Props> = ({ children }) => {
   const { auth } = useAuthState()
-  const { logout } = useLogout()
+  const logoutRequest = useLogoutRequest()
 
   return (
     <div className={styles.layoutContainer}>
@@ -31,7 +31,7 @@ const AuthenticatedLayout: React.FC<Props> = ({ children }) => {
         <div className={styles.topbarContainer}>
           <h3>
             {auth.name}{' '}
-            <Button type="link" onClick={() => logout()}>
+            <Button type="link" onClick={() => logoutRequest.call()}>
               Sair
             </Button>
           </h3>

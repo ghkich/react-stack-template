@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocation } from 'react-router-dom'
 
 import AuthenticatedLayout from './layouts/AuthenticatedLayout'
-import { injectMockAdapterIfPrototype } from './mock/adapter'
 import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
 import { useAuthState } from './state/auth/AuthProvider'
 
@@ -48,10 +47,6 @@ const SwitchRoutes: React.FC = () => {
   const { auth } = useAuthState()
   const isAuthenticated = auth.access_token !== ''
   const location = useLocation()
-
-  useEffect(() => {
-    injectMockAdapterIfPrototype()
-  }, [])
 
   const isRoutePermitted = (routePath: RoutePaths) => {
     return true

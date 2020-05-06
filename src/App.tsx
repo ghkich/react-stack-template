@@ -19,6 +19,11 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetEr
 }
 
 const App: React.FC = () => {
+  if (process.env.REACT_APP_PROTO) {
+    const { startMirageServers } = require('./mirage/servers')
+    startMirageServers()
+  }
+
   return (
     <ErrorBoundary fallbackRender={ErrorFallback}>
       <AuthProvider>

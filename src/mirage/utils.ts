@@ -33,3 +33,8 @@ export function generateCPF() {
   }
   return generatedCPF
 }
+
+export const getUrlParam = (param: string) => {
+  const url = new URL(window.location.href)
+  return url.searchParams.get(param)
+}

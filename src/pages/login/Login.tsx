@@ -1,8 +1,6 @@
-import { AxiosResponse } from 'axios'
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
 
 import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
@@ -10,11 +8,8 @@ import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
 import LoginLayout from '../../layouts/LoginLayout'
 import { RoutePaths } from '../../routes'
-import API from '../../state/api'
-import { useAuthState } from '../../state/auth/AuthProvider'
-import { Auth } from '../../state/auth/types'
+import { useLoginRequest } from '../../state/auth/requests'
 import { enteringFromTop } from '../../utils/animation-utils'
-import { setLocalItem } from '../../utils/storage-utils'
 
 type FormData = {
   email: string
@@ -23,33 +18,12 @@ type FormData = {
 }
 
 const Login: React.FC = () => {
-  const history = useHistory()
-  const { setAuth } = useAuthState()
-  const [authenticating, setAuthenticating] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
   const { handleSubmit, register, errors } = useForm<FormData>()
+  const loginRequest = useLoginRequest()
+  const authenticating = loginRequest.status === 'loading'
 
   const onSubmit = handleSubmit(async ({ email, password, keepMeLoggedIn }) => {
-    try {
-      setAuthenticating(true)
-      const response: AxiosResponse<Auth> = await API.post('users/login', { email, password })
-      setAuth(response.data)
-      setLocalItem('auth', response.data)
-      if (keepMeLoggedIn) {
-        //TODO: cookie!
-      }
-      history.push(RoutePaths.HOME)
-    } catch (error) {
-      if (error.response?.status === 403) {
-        setErrorMessage('E-mail ou senha inválidos')
-      } else {
-        setErrorMessage(() => {
-          throw new Error(error)
-        })
-      }
-    } finally {
-      setAuthenticating(false)
-    }
+    loginRequest.call(email, password, keepMeLoggedIn)
   })
 
   const hideElementStyle = {
@@ -67,11 +41,11 @@ const Login: React.FC = () => {
         </>
       }
     >
-      {errorMessage && (
+      {loginRequest.error && (
         <Alert
           type="error"
-          message={errorMessage}
-          description="Por favor, verifique as informações enviadas"
+          message={loginRequest.error.message}
+          description={loginRequest.error.tip}
           style={{ marginBottom: 20 }}
         />
       )}
