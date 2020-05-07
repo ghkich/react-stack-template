@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { RoutePaths } from '../../app/routes'
 import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
+import Checkbox from '../../components/Checkbox/Checkbox'
 import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
 import { useLoginRequest } from '../../features/auth/requests'
@@ -37,7 +38,7 @@ const Login: React.FC = () => {
       backgroundMessage={
         <>
           Sem dor de cabeça. <br />
-          Cartório é com a gente.
+          Documento é com a gente.
         </>
       }
     >
@@ -92,10 +93,9 @@ const Login: React.FC = () => {
           />
         </FormItem>
         <FormItem>
-          <label>
-            <input type="checkbox" name="keepMeLoggedIn" ref={register()} disabled={authenticating} tabIndex={3} />
-            Continuar logado
-          </label>
+          <Checkbox name="keepMeLoggedIn" ref={register()} disabled={authenticating} tabIndex={3}>
+            Continuar conectado
+          </Checkbox>
         </FormItem>
         <Button type="primary" htmlType="submit" loading={authenticating} block tabIndex={4}>
           Entrar

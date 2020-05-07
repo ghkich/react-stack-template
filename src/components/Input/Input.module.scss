@@ -16,12 +16,13 @@
   transition: box-shadow 0.15s linear;
 
   &:disabled {
+    cursor: not-allowed;
     background-color: $grayE8;
-    border: 1px solid transparent;
+    border: 1px solid $grayD4;
     color: $blue-gray-color-light;
   }
 
-  &:hover:not(:disabled) {
+  &:hover:not([disabled]) {
     border-color: $primary-color;
   }
 
@@ -35,9 +36,3 @@
     font-size: 16px;
   }
 }
-
-// :global {
-//   :local(.inputContainer) {
-
-//   }
-// }
