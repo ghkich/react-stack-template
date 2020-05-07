@@ -61,7 +61,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (to) {
     return (
-      <Link to={to} className={classNames} {...props}>
+      <Link to={to} className={classNames} onMouseDown={(e) => e.preventDefault()} {...props}>
         {children}
       </Link>
     )

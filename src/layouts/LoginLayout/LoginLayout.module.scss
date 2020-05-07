@@ -17,9 +17,15 @@
   padding: $normalPadding;
 }
 
+.logoContainer {
+  position: absolute;
+  top: 80px;
+}
+
 .formContainer {
   width: 100%;
   max-width: 450px;
+  margin-top: 60px;
 }
 
 .formTitle {
@@ -36,6 +42,7 @@
   width: 615px;
   background-image: url('../../images/bg-flag.svg');
   background-size: cover;
+  overflow: hidden;
 }
 
 .backgroundMessage {

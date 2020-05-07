@@ -69,10 +69,10 @@
     }
 
     &.btn-link {
-      display: inline-block;
-      height: inherit;
+      display: inline-flex;
+      height: 20px;
       padding: 0;
-      font-size: inherit;
+      font-size: 14px;
       line-height: inherit;
       text-decoration: underline;
       color: $primary-color;

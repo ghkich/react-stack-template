@@ -105,7 +105,6 @@ const Login: React.FC = () => {
             position: 'relative',
             zIndex: 0,
             textAlign: 'center',
-            fontSize: 13,
             margin: '10px auto',
             userSelect: 'none',
             opacity: 0.4,
@@ -117,9 +116,9 @@ const Login: React.FC = () => {
           Verificando credenciais...
         </motion.div>
       </form>
-      <p style={{ marginTop: 60, fontSize: 14, textAlign: 'center', ...hideElementStyle }}>
+      <p style={{ marginTop: 20, fontSize: 14, textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b>{' '}
-        <Button type="link" tabIndex={6}>
+        <Button type="link" to={RoutePaths.REGISTER} tabIndex={6}>
           Crie agora mesmo
         </Button>
       </p>
