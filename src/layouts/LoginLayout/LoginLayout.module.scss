@@ -15,17 +15,32 @@
   justify-content: space-evenly;
   align-items: center;
   padding: $normalPadding;
+  position: relative;
 }
 
 .logoContainer {
   position: absolute;
   top: 80px;
+
+  @media #{$phone-down} {
+    display: none;
+  }
+}
+
+.smallLogoContainer {
+  display: none;
+  position: absolute;
+  top: 30px;
+
+  @media #{$phone-down} {
+    display: block;
+  }
 }
 
 .formContainer {
   width: 100%;
   max-width: 450px;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .formTitle {
@@ -43,6 +58,14 @@
   background-image: url('../../images/bg-flag.svg');
   background-size: cover;
   overflow: hidden;
+
+  @media #{$wide-screen-down} {
+    width: 550px;
+  }
+
+  @media #{$desktop-down} {
+    display: none;
+  }
 }
 
 .backgroundMessage {

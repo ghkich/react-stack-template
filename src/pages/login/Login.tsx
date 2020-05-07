@@ -101,22 +101,15 @@ const Login: React.FC = () => {
           Entrar
         </Button>
         <motion.div
-          style={{
-            position: 'relative',
-            zIndex: 0,
-            textAlign: 'center',
-            margin: '10px auto',
-            userSelect: 'none',
-            opacity: 0.4,
-          }}
+          style={{ position: 'absolute', marginTop: 10, left: 0, right: 0, zIndex: 0 }}
           initial={authenticating ? 'enter' : 'exit'}
           animate={authenticating ? 'enter' : 'exit'}
           variants={enteringFromTop}
         >
-          Verificando credenciais...
+          <div style={{ fontSize: 13, textAlign: 'center', userSelect: 'none' }}>Verificando credenciais...</div>
         </motion.div>
       </form>
-      <p style={{ marginTop: 20, fontSize: 14, textAlign: 'center', ...hideElementStyle }}>
+      <p style={{ marginTop: 55, fontSize: 14, lineHeight: '35px', textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b>{' '}
         <Button type="link" to={RoutePaths.REGISTER} tabIndex={6}>
           Crie agora mesmo

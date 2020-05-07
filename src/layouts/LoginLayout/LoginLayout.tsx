@@ -5,10 +5,11 @@ import { ReactComponent as LogoCBRDocLettering } from '../../images/logo-cbrdoc-
 import { enteringFromLeft, enteringFromRight } from '../../utils/animation-utils'
 import styles from './LoginLayout.module.scss'
 
-const logoCBRDocVertical = require('../../images/logo-cbrdoc-horizontal.svg')
+const logoCBRDoc = require('../../images/logo-cbrdoc-horizontal.svg')
+const logoCBRDocNoSlogan = require('../../images/logo-cbrdoc-horizontal-no-slogan.svg')
 
 interface Props {
-  title: string
+  title?: string
   backgroundMessage?: React.ReactNode
 }
 
@@ -17,11 +18,14 @@ const LoginLayout: React.FC<Props> = ({ title, backgroundMessage, children }) =>
     <div className={styles.layoutContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.logoContainer}>
-          <img src={logoCBRDocVertical} alt="CBRdoc - Central Brasileira de Documentos" />
+          <img src={logoCBRDoc} alt="CBRdoc - Central Brasileira de Documentos" />
+        </div>
+        <div className={styles.smallLogoContainer}>
+          <img src={logoCBRDocNoSlogan} alt="CBRdoc - Central Brasileira de Documentos" />
         </div>
         <div className={styles.formContainer}>
           <motion.div initial="exit" animate="enter" exit="exit" variants={enteringFromLeft}>
-            <h1 className={styles.formTitle}>{title}</h1>
+            {title && <h1 className={styles.formTitle}>{title}</h1>}
             {children}
           </motion.div>
         </div>
