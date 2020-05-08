@@ -6,8 +6,8 @@ import { ReactQueryDevtools } from 'react-query-devtools'
 import { Provider } from 'react-redux'
 
 import Notification from '../components/Notification/Notification'
-import store from '../features/store'
-import { useUiState } from '../features/ui/slice'
+import store from '../state/store'
+import { useUiState } from '../state/ui/slice'
 import MainRouter from './Router'
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack, resetErrorBoundary }) => {

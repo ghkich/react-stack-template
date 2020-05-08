@@ -12,9 +12,9 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, '
 }
 
 const Input: React.FC<InputProps> = forwardRef<any, InputProps>(({ size, className, ...props }, ref) => {
-  const sizeCls = size && `input-${size}`
+  const sizeClx = size && `input-${size}`
 
-  return <input ref={ref} className={clsx([styles.inputContainer, sizeCls, className])} {...props} />
+  return <input ref={ref} className={clsx([styles.inputContainer, sizeClx, className])} {...props} />
 })
 
 export default Input

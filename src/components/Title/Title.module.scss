@@ -1,0 +1,17 @@
+@import '../../app/theme.scss';
+
+.titleContainer {
+  font-weight: 200;
+}
+
+:global {
+  :local(.titleContainer) {
+    &.title-level-1 {
+      font-size: 32px;
+    }
+
+    &.title-level-2 {
+      font-size: 28px;
+    }
+  }
+}

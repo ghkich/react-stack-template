@@ -1,7 +1,7 @@
 import faker from 'faker'
 
-import { AuthState } from '../features/auth/types'
-import { Order } from '../features/orders/types'
+import { AuthState } from '../state/auth/types'
+import { Order } from '../state/orders/types'
 
 // const blowson = require('blowson')
 

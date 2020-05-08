@@ -1,14 +1,12 @@
 import clsx from 'clsx'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 
-import { RoutePaths } from '../../app/routes'
 import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
 import styles from './Button.module.scss'
 
 type ButtonType = 'primary' | 'success' | 'link'
-interface BaseButtonProps {
-  to?: RoutePaths
+interface BaseButtonProps extends Partial<LinkProps> {
   type?: ButtonType
   icon?: string
   loading?: boolean
@@ -44,12 +42,12 @@ const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const typeCls = type && `btn-${type}`
-  const ghostCls = ghost && 'btn-ghost'
-  const blockCls = block && 'btn-block'
-  const loadingCls = loading && 'btn-loading'
+  const typeClx = type && `btn-${type}`
+  const ghostClx = ghost && 'btn-ghost'
+  const blockClx = block && 'btn-block'
+  const loadingClx = loading && 'btn-loading'
 
-  const classNames = clsx([styles.buttonContainer, className, typeCls, ghostCls, blockCls, loadingCls])
+  const classNames = clsx([styles.buttonContainer, className, typeClx, ghostClx, blockClx, loadingClx])
 
   if (href) {
     return (

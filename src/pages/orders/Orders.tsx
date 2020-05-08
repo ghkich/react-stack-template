@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import ListOrders from '../../features/orders/ListOrders'
-import OrdersStatistics from '../../features/orders/OrdersStatistics'
+import ListOrders from './components/ListOrders'
+import OrdersStatistics from './components/OrdersStatistics'
 
 interface Props {}
 

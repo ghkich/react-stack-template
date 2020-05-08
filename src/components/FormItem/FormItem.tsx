@@ -20,15 +20,15 @@ interface FormItemProps {
 const FormItem: React.FC<FormItemProps> = ({
   label,
   feedback,
-  feedbackStatus,
+  feedbackStatus = 'error',
   className,
   htmlFor,
   children,
   ...props
 }) => {
-  const statusCls = feedback && feedbackStatus && `form-item-status-${feedbackStatus}`
+  const statusClx = feedback && feedbackStatus && `form-item-status-${feedbackStatus}`
   return (
-    <div className={clsx([styles.formItemContainer, statusCls, className])} {...props}>
+    <div className={clsx([styles.formItemContainer, statusClx, className])} {...props}>
       {label && (
         <label htmlFor={htmlFor} className={styles.formItemLabel}>
           {label}

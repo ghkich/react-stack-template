@@ -1,29 +1,30 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
 import Button from '../../components/Button/Button'
 import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
+import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
 
 type FormData = {
-  cpf?: string
-  cnpj?: string
+  cpf: string
 }
 
-const Register: React.FC = () => {
+const RegisterCpf: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
-  // const loginRequest = useRegisterRequest()
-  const authenticating = false
-
-  const onSubmit = handleSubmit(async ({ cnpj }) => {
-    // loginRequest.call(email, password, keepMeLoggedIn)
+  const history = useHistory()
+  const onSubmit = handleSubmit(({ cpf }) => {
+    history.push({
+      pathname: RoutePaths.REGISTER_CNPJ_2,
+      state: { cpf: cpf },
+    })
   })
 
   return (
     <LoginLayout
-      title="Qual é seu CNPJ?"
       backgroundMessage={
         <>
           Crie uma conta e solicite documentos ou faça <br />
@@ -33,22 +34,24 @@ const Register: React.FC = () => {
       }
     >
       <form onSubmit={onSubmit}>
-        <FormItem label="CNPJ" feedback={errors.cnpj && 'Informe um CNPJ válido'} feedbackStatus="error">
+        <Title level={2} style={{ marginBottom: 20 }}>
+          Qual seu CPF?
+        </Title>
+        <FormItem label="CPF" feedback={errors.cpf && 'Digite um CPF válido'}>
           <Input
-            name="cnpj"
+            name="cpf"
             autoComplete="off"
             ref={register({
               required: 'Required',
             })}
-            disabled={authenticating}
           />
         </FormItem>
         <FormItem>
-          <Button type="link" onClick={() => {}}>
+          <Button type="link" to={RoutePaths.REGISTER_CNPJ} replace>
             Quero cadastrar minha empresa
           </Button>
         </FormItem>
-        <Button type="primary" htmlType="submit" loading={authenticating} block>
+        <Button type="primary" htmlType="submit" block>
           Continuar
         </Button>
       </form>
@@ -62,4 +65,4 @@ const Register: React.FC = () => {
   )
 }
 
-export default Register
+export default RegisterCpf

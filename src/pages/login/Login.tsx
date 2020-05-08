@@ -8,8 +8,9 @@ import Button from '../../components/Button/Button'
 import Checkbox from '../../components/Checkbox/Checkbox'
 import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
-import { useLoginRequest } from '../../features/auth/requests'
+import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
+import { useLoginRequest } from '../../state/auth/requests'
 import { enteringFromTop } from '../../utils/animation-utils'
 
 type FormData = {
@@ -34,7 +35,6 @@ const Login: React.FC = () => {
 
   return (
     <LoginLayout
-      title="Acessar conta"
       backgroundMessage={
         <>
           Sem dor de cabeça. <br />
@@ -42,6 +42,9 @@ const Login: React.FC = () => {
         </>
       }
     >
+      <Title level={2} style={{ marginBottom: 20 }}>
+        Accesar sua conta
+      </Title>
       {loginRequest.error && (
         <Alert
           type="error"
@@ -51,7 +54,7 @@ const Login: React.FC = () => {
         />
       )}
       <form onSubmit={onSubmit}>
-        <FormItem label="E-mail" feedback={errors.email && 'Informe um e-mail válido'} feedbackStatus="error">
+        <FormItem label="E-mail" feedback={errors.email && 'Informe um e-mail válido'}>
           <Input
             name="email"
             autoComplete="email"
@@ -66,7 +69,7 @@ const Login: React.FC = () => {
             tabIndex={1}
           />
         </FormItem>
-        <FormItem label="Senha" feedback={errors.password && 'Informe a senha'} feedbackStatus="error">
+        <FormItem label="Senha" feedback={errors.password && 'Informe a senha'}>
           <Button
             type="link"
             style={{
@@ -111,7 +114,7 @@ const Login: React.FC = () => {
       </form>
       <p style={{ marginTop: 55, fontSize: 14, lineHeight: '35px', textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b>{' '}
-        <Button type="link" to={RoutePaths.REGISTER} tabIndex={6}>
+        <Button type="link" to={RoutePaths.REGISTER_CNPJ} tabIndex={6}>
           Crie agora mesmo
         </Button>
       </p>

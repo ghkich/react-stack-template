@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-import { AuthState } from '../features/auth/types'
+import { AuthState } from '../state/auth/types'
 import { getLocalItem } from '../utils/storage-utils'
 
 const API = Axios.create({

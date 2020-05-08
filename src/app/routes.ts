@@ -6,10 +6,15 @@ import Login from '../pages/login/Login'
 import CreateOrder from '../pages/orders/CreateOrder'
 import Orders from '../pages/orders/Orders'
 import ViewOrder from '../pages/orders/ViewOrder'
-import Register from '../pages/register/Register'
+import RegisterCnpj from '../pages/register/RegisterCnpj'
+import RegisterCnpj2 from '../pages/register/RegisterCnpj2'
+import RegisterCpf from '../pages/register/RegisterCpf'
 
 export enum RoutePaths {
-  REGISTER = '/criar-conta',
+  REGISTER_CNPJ = '/criar-conta-empresa',
+  REGISTER_CNPJ_2 = '/criar-conta-empresa-2',
+  REGISTER_CPF = '/criar-conta-pessoal',
+  REGISTER_CPF_2 = '/criar-conta-pessoal-2',
   LOGIN = '/login',
   HOME = '/',
   ORDERS = '/pedidos',
@@ -27,8 +32,16 @@ interface Route extends RouteProps {
 
 export const publicRoutes: Route[] = [
   {
-    path: RoutePaths.REGISTER,
-    component: Register,
+    path: RoutePaths.REGISTER_CNPJ,
+    component: RegisterCnpj,
+  },
+  {
+    path: RoutePaths.REGISTER_CNPJ_2,
+    component: RegisterCnpj2,
+  },
+  {
+    path: RoutePaths.REGISTER_CPF,
+    component: RegisterCpf,
   },
   {
     path: RoutePaths.LOGIN,

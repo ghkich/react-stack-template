@@ -1,0 +1,23 @@
+@import '../../../app/theme.scss';
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: $normalPadding;
+  background-color: $whiteF9;
+}
+
+.message {
+  margin-left: $normalPadding;
+  padding-left: $normalPadding;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logoContainer {
+  display: block;
+
+  @media #{$phone-down} {
+    display: block;
+  }
+}

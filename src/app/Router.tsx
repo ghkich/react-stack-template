@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocation } from 'react-router-dom'
 
-import { useAuthState } from '../features/auth/slice'
 import AuthenticatedLayout from '../layouts/AuthenticatedLayout/AuthenticatedLayout'
+import { useAuthState } from '../state/auth/slice'
 import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
 
 interface AuthtenticatedRouteProps extends RouteProps {
