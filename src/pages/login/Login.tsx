@@ -1,17 +1,17 @@
-import { motion } from 'framer-motion'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
 import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
+import ButtonLoader from '../../components/ButtonLoader/ButtonLoader'
 import Checkbox from '../../components/Checkbox/Checkbox'
 import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
 import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
 import { useLoginRequest } from '../../state/auth/requests'
-import { enteringFromTop } from '../../utils/animation-utils'
 
 type FormData = {
   email: string
@@ -23,6 +23,7 @@ const Login: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
   const loginRequest = useLoginRequest()
   const authenticating = loginRequest.status === 'loading'
+  const history = useHistory()
 
   const onSubmit = handleSubmit(async ({ email, password, keepMeLoggedIn }) => {
     loginRequest.call(email, password, keepMeLoggedIn)
@@ -100,17 +101,13 @@ const Login: React.FC = () => {
             Continuar conectado
           </Checkbox>
         </FormItem>
-        <Button type="primary" htmlType="submit" loading={authenticating} block tabIndex={4}>
-          Entrar
-        </Button>
-        <motion.div
-          style={{ position: 'absolute', marginTop: 10, left: 0, right: 0, zIndex: 0 }}
-          initial={authenticating ? 'enter' : 'exit'}
-          animate={authenticating ? 'enter' : 'exit'}
-          variants={enteringFromTop}
+        <ButtonLoader
+          status={loginRequest.status}
+          loadingMessage="Verificando credenciais..."
+          onSuccess={() => history.push(RoutePaths.HOME)}
         >
-          <div style={{ fontSize: 13, textAlign: 'center', userSelect: 'none' }}>Verificando credenciais...</div>
-        </motion.div>
+          Entrar
+        </ButtonLoader>
       </form>
       <p style={{ marginTop: 55, fontSize: 14, lineHeight: '35px', textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b>{' '}

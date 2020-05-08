@@ -6,7 +6,7 @@ import { getUrlParam } from './utils'
 const { auth, orders } = data
 
 export const startMirageServers = () => {
-  const delayResponse = 500
+  const delayResponse = 1500
   const scenario = getUrlParam('scenario')
 
   new Server({

@@ -1,12 +1,10 @@
 import { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
 import API from '../../api/config'
 import { ERRORS } from '../../api/errors'
 import { ApiError, ApiStatus, Endpoints } from '../../api/types'
-import { RoutePaths } from '../../app/routes'
 import { removeLocalItem, setLocalItem } from '../../utils/storage-utils'
 import { useDispatchNotification } from '../ui/dispatches'
 import { authActions } from './slice'
@@ -14,9 +12,8 @@ import { AuthState } from './types'
 
 export const useLoginRequest = () => {
   const [error, setError] = useState<ApiError>()
-  const [status, setStatus] = useState<ApiStatus>()
+  const [status, setStatus] = useState<ApiStatus>('idle')
   const dispatch = useDispatch()
-  const history = useHistory()
   const dispatchNotification = useDispatchNotification()
 
   const call = async (email: string, password: string, keepMeLoggedIn: boolean) => {
@@ -29,7 +26,6 @@ export const useLoginRequest = () => {
       if (keepMeLoggedIn) {
         //TODO: cookie!
       }
-      history.push(RoutePaths.HOME)
     } catch (error) {
       setStatus('error')
       if (error.response?.status === 401) {

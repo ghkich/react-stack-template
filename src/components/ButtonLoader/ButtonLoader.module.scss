@@ -1,0 +1,31 @@
+@import '../../app/theme.scss';
+
+.buttonLoaderContainer {
+  position: relative;
+}
+
+.iconContainer {
+  font-size: 34px;
+  height: 34px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.iconSpinning {
+  animation: spin 1000ms infinite linear;
+}
+
+.messageContainer {
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
