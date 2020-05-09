@@ -1,0 +1,26 @@
+@import '../../app/theme.scss';
+
+.searchContainer {
+  display: block;
+  position: relative;
+}
+
+.iconContainer {
+  font-size: 20px;
+  height: 20px;
+  position: absolute;
+  color: $default-text-color;
+  right: 18px;
+  top: 18px;
+}
+
+:global {
+  :local(.iconContainer) {
+    &.search-size-small {
+      font-size: 18px;
+      height: 18px;
+      right: 13px;
+      top: 13px;
+    }
+  }
+}

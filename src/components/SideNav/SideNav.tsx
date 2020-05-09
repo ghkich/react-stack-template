@@ -35,13 +35,12 @@ const menuCollapsing = {
 
 const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(getLocalItem('menuCollapsed') ? true : false)
+  const collapsedClx = menuCollapsed && 'menu-collapsed'
 
-  const handleToggleCollapse = () => {
+  function handleToggleCollapse() {
     setMenuCollapsed(!menuCollapsed)
     setLocalItem('menuCollapsed', !menuCollapsed ? 'true' : '')
   }
-
-  const collapsedClx = menuCollapsed && 'menu-collapsed'
 
   return (
     <motion.div

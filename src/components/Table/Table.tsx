@@ -36,8 +36,8 @@ const Table: React.FC<TableProps> = ({}) => {
           </tr>
         </thead>
         <tbody className={styles.tbody}>
-          {Array.from(Array(5).keys()).map((row: any) => (
-            <tr className={clsx([styles.bodyRow])}>
+          {Array.from(Array(5).keys()).map((row: any, i: number) => (
+            <tr key={i} className={clsx([styles.bodyRow])}>
               <td style={{ height: 80, fontWeight: 'bold' }}>
                 Sabino Almeida Sanches Barbosa da Silva Andrade Albuquerque
               </td>

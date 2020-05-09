@@ -96,6 +96,20 @@
       }
     }
 
+    &.btn-danger {
+      border: 1px solid $error-color;
+      background-color: $error-color;
+
+      &:focus {
+        background-color: $error-color;
+      }
+
+      &:hover:not([disabled]) {
+        background-color: saturate($error-color, 10);
+        box-shadow: 0 5px 10px 0 rgba($error-color, 0.4);
+      }
+    }
+
     &.btn-link {
       display: inline-flex;
       height: auto;

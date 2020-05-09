@@ -1,0 +1,22 @@
+@import '../../app/theme.scss';
+
+.iconContainer {
+  font-size: inherit;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+:global {
+  :local(.iconContainer) {
+    &.icon-loading {
+      animation: spin 1000ms infinite linear;
+    }
+  }
+}

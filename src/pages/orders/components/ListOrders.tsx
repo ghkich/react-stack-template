@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Search from '../../../components/Search/Search'
 import Table from '../../../components/Table/Table'
 import { useOrdersQuery } from '../../../state/orders/queries'
 
@@ -12,6 +13,12 @@ const ListOrders: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <Search
+        size="small"
+        placeholder="Pesquise por cliente ou número do pedido"
+        onSearch={(value) => console.log(value)}
+        style={{ maxWidth: 450 }}
+      />
       <Table />
       {status === 'loading' && <div>Loading...</div>}
       {error && (

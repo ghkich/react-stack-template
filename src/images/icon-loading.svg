@@ -6,7 +6,7 @@
         <mask id="icon_loading__b" fill="currentColor">
             <use xlink:href="#icon_loading__a"/>
         </mask>
-        <use fill="#40CA8F" fill-rule="nonzero" xlink:href="#icon_loading__a"/>
+        <use fill="currentColor" fill-rule="nonzero" xlink:href="#icon_loading__a"/>
         <path fill="currentColor" d="M0 0H32.667V32.667H0z" mask="url(#icon_loading__b)"/>
     </g>
 </svg>

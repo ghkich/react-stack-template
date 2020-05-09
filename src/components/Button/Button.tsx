@@ -5,7 +5,7 @@ import { Link, LinkProps } from 'react-router-dom'
 import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
 import styles from './Button.module.scss'
 
-export type ButtonType = 'default' | 'primary' | 'success' | 'link'
+export type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
 interface BaseButtonProps extends Partial<LinkProps> {
   type?: ButtonType
   icon?: string
