@@ -4,16 +4,17 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
-import { ReactComponent as IconPaperPlane } from '../../images/icon-paper-plane.svg'
 import { ReactComponent as LogoCBRDocLettering } from '../../images/logo-cbrdoc-lettering.svg'
 import { ReactComponent as LogoCBRDocSymbol } from '../../images/logo-cbrdoc-symbol.svg'
 import { springTransition } from '../../utils/animation-utils'
 import { getLocalItem, setLocalItem } from '../../utils/storage-utils'
 import Button from '../Button/Button'
+import Icon, { IconType } from '../Icon/Icon'
 import styles from './SideNav.module.scss'
 
 interface NavItem {
   id: string
+  icon: IconType
   label: string
   to: RoutePaths
   show?: boolean
@@ -24,7 +25,7 @@ interface SideNavProps {
   navItems: NavItem[]
 }
 
-const menuCollapsing = {
+const navCollapsing = {
   collapsed: {
     width: 105,
   },
@@ -34,44 +35,45 @@ const menuCollapsing = {
 }
 
 const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
-  const [menuCollapsed, setMenuCollapsed] = useState(getLocalItem('menuCollapsed') ? true : false)
-  const collapsedClx = menuCollapsed && 'menu-collapsed'
+  const [navCollapsed, setNavCollapsed] = useState(getLocalItem('navCollapsed') ? true : false)
+  const collapsedClx = navCollapsed && 'nav-collapsed'
 
   function handleToggleCollapse() {
-    setMenuCollapsed(!menuCollapsed)
-    setLocalItem('menuCollapsed', !menuCollapsed ? 'true' : '')
+    setNavCollapsed(!navCollapsed)
+    setLocalItem('navCollapsed', !navCollapsed ? 'true' : '')
   }
 
   return (
     <motion.div
-      className={clsx([styles.sideMenuContainer, collapsedClx])}
-      initial={menuCollapsed ? 'collapsed' : 'normal'}
-      animate={menuCollapsed ? 'collapsed' : 'normal'}
-      variants={menuCollapsing}
+      className={clsx([styles.sideNavContainer, collapsedClx])}
+      initial={navCollapsed ? 'collapsed' : 'normal'}
+      animate={navCollapsed ? 'collapsed' : 'normal'}
+      variants={navCollapsing}
       transition={springTransition}
     >
       <div className={styles.logoContainer}>
         <LogoCBRDocSymbol className={clsx([styles.logoSymbol, collapsedClx])} />
-        {!menuCollapsed && <LogoCBRDocLettering color="white" />}
+        {!navCollapsed && <LogoCBRDocLettering color="white" />}
       </div>
       <button
-        className={styles.toggleMenuButton}
+        className={clsx([styles.toggleNavButton, collapsedClx])}
         onClick={handleToggleCollapse}
         onMouseDown={(e) => e.preventDefault()}
       >
-        M
+        <Icon type="nav" />
       </button>
       <div className={styles.navItemsContainer}>
         {mainNavItem && (
-          <Button type="primary" to={mainNavItem.to} block>
-            {!menuCollapsed && <span style={{ marginRight: 8 }}>{mainNavItem.label}</span>}
-            <IconPaperPlane style={{ fontSize: '1.25em' }} />
+          <Button type="primary" to={mainNavItem.to} className={styles.mainNavItem} block>
+            {!navCollapsed && <span style={{ marginRight: 8 }}>{mainNavItem.label}</span>}
+            <Icon type={mainNavItem.icon} style={{ fontSize: '1.25em' }} />
           </Button>
         )}
         {navItems.map(
           (navItem) =>
             navItem.show && (
-              <NavLink key={navItem.id} exact to={navItem.to} className={styles.navItem}>
+              <NavLink key={navItem.id} exact to={navItem.to} className={clsx([styles.navItem, collapsedClx])}>
+                <Icon type={navItem.icon} className={styles.navItemIcon} />
                 {navItem.label}
               </NavLink>
             ),

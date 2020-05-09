@@ -1,0 +1,31 @@
+@import '../../app/theme.scss';
+
+.tagContainer {
+  display: inline-block;
+  line-height: 30px;
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 15px;
+  background-color: $default-text-color;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+:global {
+  :local(.tagContainer) {
+    &.tag-color-success {
+      background-color: $success-color;
+    }
+    &.tag-color-warning {
+      background-color: $success-color;
+    }
+    &.tag-color-danger {
+      background-color: $error-color;
+    }
+    &.tag-color-info {
+      background-color: $info-color;
+    }
+  }
+}

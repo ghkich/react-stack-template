@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" viewBox="0 0 24 24">
+    <defs>
+        <path id="icon-money__a" d="M23.368 0c.35 0 .632.283.632.632v12.631c0 .349-.283.632-.632.632H.632c-.35 0-.632-.283-.632-.632V.632C0 .282.283 0 .632 0h22.736zm-.631 1.263H1.263v11.369h21.474V1.263zM12 2.526c.349 0 .632.283.632.632v.631h1.894c.349 0 .632.283.632.632 0 .349-.283.632-.632.632h-4.42v1.263h4.42c.349 0 .632.283.632.631v2.527c0 .348-.283.631-.632.631h-1.894v.632c0 .348-.283.631-.632.631-.349 0-.632-.283-.632-.631v-.632H9.474c-.349 0-.632-.283-.632-.631 0-.349.283-.632.632-.632h4.42V7.58h-4.42c-.349 0-.632-.283-.632-.632V4.421c0-.349.283-.632.632-.632h1.894v-.631c0-.349.283-.632.632-.632z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 5)">
+        <mask id="icon-money__b" fill="#fff">
+            <use xlink:href="#icon-money__a"/>
+        </mask>
+        <use fill="currentColor" fill-rule="nonzero" xlink:href="#icon-money__a"/>
+        <g fill="currentColor" mask="url(#icon-money__b)">
+            <path d="M0 0H94.255V94.255H0z" transform="translate(-36 -40)"/>
+        </g>
+    </g>
+</svg>

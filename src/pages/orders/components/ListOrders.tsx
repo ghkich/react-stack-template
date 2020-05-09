@@ -2,6 +2,7 @@ import React from 'react'
 
 import Search from '../../../components/Search/Search'
 import Table from '../../../components/Table/Table'
+import ToggleButton from '../../../components/ToggleButton/ToggleButton'
 import { useOrdersQuery } from '../../../state/orders/queries'
 
 interface Props {}
@@ -13,12 +14,23 @@ const ListOrders: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Search
-        size="small"
-        placeholder="Pesquise por cliente ou número do pedido"
-        onSearch={(value) => console.log(value)}
-        style={{ maxWidth: 450 }}
-      />
+      <div style={{ display: 'flex', width: '100%', marginBottom: 20 }}>
+        <Search
+          size="small"
+          placeholder="Pesquise por cliente ou número do pedido"
+          onSearch={(value) => console.log(value)}
+          style={{ flex: 1, maxWidth: 450 }}
+        />
+        <div style={{ marginLeft: 20 }}>
+          <div>Filtrar pedidos por:</div>
+          <ToggleButton onToggleActive={(active) => console.log(active)} startActive>
+            Em andamento
+          </ToggleButton>
+          <ToggleButton onToggleActive={(active) => console.log(active)} style={{ marginLeft: 10 }}>
+            Finalizado
+          </ToggleButton>
+        </div>
+      </div>
       <Table />
       {status === 'loading' && <div>Loading...</div>}
       {error && (

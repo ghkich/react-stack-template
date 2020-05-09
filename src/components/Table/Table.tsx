@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React, { HTMLAttributes, useState } from 'react'
 
+import Tag from '../Tag/Tag'
 import styles from './Table.module.scss'
 
 const Row: React.FC<HTMLAttributes<HTMLTableRowElement>> = ({ className, children }) => {
@@ -48,7 +49,9 @@ const Table: React.FC<TableProps> = ({}) => {
                 ITR - Certidão de Débitos Relativos a Tributos Federais e a Dívida Ativa da União de Imóvel Rural
               </td>
               <td>
-                <div className={styles.tagContainer}>Em andamento</div>
+                <Tag color="success" style={{ width: 130 }}>
+                  Em andamento
+                </Tag>
               </td>
               <td style={{ width: 0, padding: 0 }}>
                 <div className="teste" style={{ width: 0 }}>

@@ -17,7 +17,7 @@ export const startMirageServers = () => {
       this.namespace = '/'
       this.timing = delayResponse
 
-      this.post('/users/login', () => {
+      this.post('/login', () => {
         switch (scenario) {
           case 'loginUnauthorized':
             return new Response(401)

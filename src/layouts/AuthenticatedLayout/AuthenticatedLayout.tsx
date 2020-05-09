@@ -21,16 +21,23 @@ const AuthenticatedLayout: React.FC<Props> = ({ user, children }) => {
       <SideNav
         mainNavItem={{
           id: 'create_order',
+          icon: 'paper-plane',
           label: 'Fazer pedido',
           to: RoutePaths.CREATE_ORDER,
           show: user.can_order_document,
         }}
         navItems={[
-          { id: 'home', label: 'Início', to: RoutePaths.HOME, show: true },
-          { id: 'orders', label: 'Meus pedidos', to: RoutePaths.ORDERS, show: user.can_order_document },
-          { id: 'credits', label: 'Créditos', to: RoutePaths.CREDITS, show: user.can_insert_credits },
-          { id: 'invoices', label: 'Faturas', to: RoutePaths.INVOICES, show: user.can_see_financial_transactions },
-          { id: 'reports', label: 'Relatórios', to: RoutePaths.REPORTS, show: user.can_see_reports },
+          { id: 'home', icon: 'home', label: 'Início', to: RoutePaths.HOME, show: true },
+          { id: 'orders', icon: 'folder', label: 'Meus pedidos', to: RoutePaths.ORDERS, show: user.can_order_document },
+          { id: 'credits', icon: 'money', label: 'Créditos', to: RoutePaths.CREDITS, show: user.can_insert_credits },
+          {
+            id: 'invoices',
+            icon: 'invoice',
+            label: 'Faturas',
+            to: RoutePaths.INVOICES,
+            show: user.can_see_financial_transactions,
+          },
+          { id: 'reports', icon: 'chart', label: 'Relatórios', to: RoutePaths.REPORTS, show: user.can_see_reports },
         ]}
       />
       <div className={styles.content}>

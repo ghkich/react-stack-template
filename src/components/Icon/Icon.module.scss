@@ -5,18 +5,14 @@
 }
 
 @keyframes spin {
-  0% {
+  from {
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(359deg);
+  to {
+    transform: rotate(360deg);
   }
 }
 
-:global {
-  :local(.iconContainer) {
-    &.icon-loading {
-      animation: spin 1000ms infinite linear;
-    }
-  }
+.iconSpinning {
+  animation: spin 1s infinite linear;
 }

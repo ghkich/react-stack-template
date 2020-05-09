@@ -8,8 +8,6 @@ import { Order } from '../state/orders/types'
 faker.locale = 'pt_BR'
 const blowson = require('blowson')
 
-faker.seed(123)
-
 export const auth: AuthState = {
   access_token: faker.random.alphaNumeric(25),
   can_insert_credits: faker.random.boolean(),
@@ -30,23 +28,37 @@ const extendedOrders = blowson({
   data: [
     {
       id: 1,
-      user_id: 1,
-      document_type_id: 1,
-      current_status_id: 4,
-      priority: 0,
-      placed_time: '2020-05-02',
-      estimated_time: '2020-05-09',
-      delivered_time: null,
+      currentStatus: {
+        id: 4,
+        name: 'Finalizado',
+      },
+      documentType: {
+        id: 1,
+        name: 'Certidão de nascimento',
+      },
+      user: {
+        name: 'Admin from JHOB',
+      },
+      customer: {
+        name: 'JHOB',
+      },
     },
     {
-      id: 50,
-      user_id: 20,
-      document_type_id: 1,
-      current_status_id: 4,
-      priority: 0,
-      placed_time: '2020-04-02',
-      estimated_time: '2020-04-09',
-      delivered_time: null,
+      id: 20,
+      currentStatus: {
+        id: 4,
+        name: 'Finalizado',
+      },
+      documentType: {
+        id: 1,
+        name: 'Certidão de nascimento',
+      },
+      user: {
+        name: 'Admin from JHOB',
+      },
+      customer: {
+        name: 'JHOB',
+      },
     },
   ],
 })

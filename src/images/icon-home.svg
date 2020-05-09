@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" viewBox="0 0 21 21">
+    <defs>
+        <path id="icon-home__a" d="M17.324 9.516c.29 0 .525.235.525.525v8.4c0 .868-.707 1.574-1.575 1.574H4.724c-.868 0-1.574-.706-1.574-1.575v-8.4c0-.289.235-.524.525-.524.29 0 .525.235.525.525v8.4c0 .29.235.524.525.524h11.55c.289 0 .524-.235.524-.525v-8.4c0-.289.235-.524.525-.524zM10.5 0c.417 0 .806.175 1.094.493l9.27 10.246c.195.215.178.547-.036.741-.214.195-.547.178-.741-.036l-9.27-10.246c-.087-.096-.199-.148-.316-.148-.116 0-.228.052-.315.148L.916 11.444c-.104.114-.246.173-.39.173l-.001-.001c-.126 0-.252-.045-.352-.136-.215-.194-.232-.526-.037-.741L9.406.493c.252-.278.581-.447.94-.485L10.5 0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 .875)">
+        <mask id="icon-home__b" fill="#fff">
+            <use xlink:href="#icon-home__a"/>
+        </mask>
+        <use fill="currentColor" fill-rule="nonzero" xlink:href="#icon-home__a"/>
+        <g fill="currentColor" mask="url(#icon-home__b)">
+            <path d="M0 0H82.473V82.473H0z" transform="translate(-31.5 -31.5)"/>
+        </g>
+    </g>
+</svg>

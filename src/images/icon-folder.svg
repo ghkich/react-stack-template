@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" viewBox="0 0 22 22">
+    <defs>
+        <path id="icon-folder__a" d="M20.35 2.201H12.1c-.095 0-.262-.103-.304-.188L11.188.796C10.961.342 10.408 0 9.9 0H2.2C1.693 0 1.138.342.912.796L.304 2.013C.13 2.36 0 2.913 0 3.301v11.55c0 .91.74 1.65 1.65 1.65h18.7c.91 0 1.65-.74 1.65-1.65v-11c0-.91-.74-1.65-1.65-1.65zm.55 12.65c0 .304-.246.55-.55.55H1.65c-.304 0-.55-.246-.55-.55V3.301c0-.216.091-.603.188-.796l.608-1.217c.042-.085.21-.188.304-.188h7.7c.095 0 .262.103.304.188l.608 1.217c.227.454.78.796 1.288.796h8.25c.304 0 .55.246.55.55v11z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 2.75)">
+        <mask id="icon-folder__b" fill="#fff">
+            <use xlink:href="#icon-folder__a"/>
+        </mask>
+        <use fill="currentColor" fill-rule="nonzero" xlink:href="#icon-folder__a"/>
+        <g fill="currentColor" mask="url(#icon-folder__b)">
+            <path d="M0 0H86.4V86.4H0z" transform="translate(-33 -34.833)"/>
+        </g>
+    </g>
+</svg>

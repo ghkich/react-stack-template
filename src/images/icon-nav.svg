@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" viewBox="0 0 21 21">
+    <defs>
+        <path id="icon-nav__a" d="M20.344 13.125c.362 0 .656.294.656.656 0 .362-.294.656-.656.656H.656c-.362 0-.656-.293-.656-.656 0-.362.294-.656.656-.656h19.688zm0-6.563c.362 0 .656.294.656.657 0 .362-.294.656-.656.656H.656C.294 7.875 0 7.581 0 7.219c0-.363.294-.657.656-.657h19.688zm0-6.562c.362 0 .656.294.656.656 0 .362-.294.656-.656.656H.656C.294 1.313 0 1.018 0 .656 0 .294.294 0 .656 0h19.688z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(0 3.5)">
+        <mask id="icon-nav__b" fill="#fff">
+            <use xlink:href="#icon-nav__a"/>
+        </mask>
+        <use fill="currentColor" fill-rule="nonzero" xlink:href="#icon-nav__a"/>
+        <g fill="currentColor" mask="url(#icon-nav__b)">
+            <path d="M0 0H94.5V94.5H0z" transform="translate(-40.688 -40.688)"/>
+        </g>
+    </g>
+</svg>
