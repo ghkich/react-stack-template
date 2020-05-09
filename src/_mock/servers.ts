@@ -29,7 +29,7 @@ export const startMirageServers = () => {
             return new Response(200, {}, auth)
         }
       })
-      this.get('/customers/:id/orders', () => {
+      this.get('/orders', () => {
         if (scenario === 'ordersFailed') {
           return new Response(403)
         } else {

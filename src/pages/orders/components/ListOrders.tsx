@@ -1,18 +1,18 @@
 import React from 'react'
 
+import Table from '../../../components/Table/Table'
 import { useOrdersQuery } from '../../../state/orders/queries'
 
 interface Props {}
 
 const ListOrders: React.FC<Props> = (props) => {
   const { data: orders, status, fetching, error, pagination } = useOrdersQuery({
-    queryBy: 'customerId',
-    id: 1,
     perPage: 1,
   })
 
   return (
     <div>
+      <Table />
       {status === 'loading' && <div>Loading...</div>}
       {error && (
         <div>
@@ -25,11 +25,12 @@ const ListOrders: React.FC<Props> = (props) => {
           Pedidos
           {orders.map((order) => (
             <div key={order.id} style={{ backgroundColor: 'white', marginBottom: 10, padding: 10, borderRadius: 4 }}>
-              ID do pedido: {order.id}
+              {order.customer.name}
             </div>
           ))}
         </div>
       )}
+
       <div>Current Page: {pagination.currentPage}</div>
       {pagination.pageCount !== 0 &&
         Array.from(Array(pagination.pageCount).keys()).map((pageNumber) => (

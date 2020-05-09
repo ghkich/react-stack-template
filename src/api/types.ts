@@ -1,5 +1,5 @@
 export enum Endpoints {
-  LOGIN = '/users/login',
+  LOGIN = '/login',
 }
 
 export type ApiStatus = 'idle' | 'loading' | 'success' | 'error'
