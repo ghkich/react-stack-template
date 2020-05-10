@@ -56,7 +56,7 @@ const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
         {!navCollapsed && <LogoCBRDocLettering color="white" />}
       </div>
       <button
-        className={clsx([styles.toggleNavButton, collapsedClx])}
+        className={clsx([styles.navToggleCollapse, collapsedClx])}
         onClick={handleToggleCollapse}
         onMouseDown={(e) => e.preventDefault()}
       >
