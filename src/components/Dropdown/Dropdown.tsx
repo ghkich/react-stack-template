@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import ClickAwayListener from '../ClickAwayListener/ClickAwayListener'
 import Portal from '../Portal/Portal'
 import styles from './Dropdown.module.scss'
 
@@ -31,16 +32,18 @@ const Dropdown: React.FC<DropDownProps> = ({ overlay, children }) => {
 
   return (
     <>
-      <div role="button" onClick={handleOnClick} style={{ cursor: 'pointer', color: '#527edd' }}>
-        {children}
-      </div>
-      {overlayVisible && (
-        <Portal>
-          <div className={styles.overlayContainer} style={{ top: coords.top, left: coords.left }}>
-            {overlay}
-          </div>
-        </Portal>
-      )}
+      <ClickAwayListener onClickAway={() => setOverlayVisible(false)}>
+        <div role="button" onClick={handleOnClick} style={{ cursor: 'pointer', color: '#527edd' }}>
+          {children}
+        </div>
+        {overlayVisible && (
+          <Portal>
+            <div className={styles.overlayContainer} style={{ top: coords.top, left: coords.left }}>
+              {overlay}
+            </div>
+          </Portal>
+        )}
+      </ClickAwayListener>
     </>
   )
 }

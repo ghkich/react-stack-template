@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { HTMLAttributes, useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Dropdown from '../Dropdown/Dropdown'
@@ -7,23 +7,9 @@ import Menu from '../Menu/Menu'
 import Tag from '../Tag/Tag'
 import styles from './Table.module.scss'
 
-const Row: React.FC<HTMLAttributes<HTMLTableRowElement>> = ({ className, children }) => {
-  const [hover, setHover] = useState(false)
-  return (
-    <tr
-      className={clsx([className, hover && 'table-row-active'])}
-      onMouseEnter={(e) => setHover(true)}
-      onMouseLeave={(e) => setHover(false)}
-    >
-      {children}
-    </tr>
-  )
-}
-
 interface TableProps {}
 
-const Table: React.FC<TableProps> = ({}) => {
-  const [rowActive, setRowActive] = useState()
+const Table: React.FC<TableProps> = () => {
   const history = useHistory()
 
   return (
