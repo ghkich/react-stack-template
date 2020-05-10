@@ -40,7 +40,7 @@
   font-size: 21px;
   cursor: pointer;
   will-change: margin;
-  transition: margin 0.15s linear, background-color 0.15s linear, color 0.15s linear;
+  transition: all 0.15s linear;
 
   &:active {
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);

@@ -1,6 +1,9 @@
 import clsx from 'clsx'
 import React, { HTMLAttributes, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
+import Dropdown from '../Dropdown/Dropdown'
+import Menu from '../Menu/Menu'
 import Tag from '../Tag/Tag'
 import styles from './Table.module.scss'
 
@@ -21,6 +24,7 @@ interface TableProps {}
 
 const Table: React.FC<TableProps> = ({}) => {
   const [rowActive, setRowActive] = useState()
+  const history = useHistory()
 
   return (
     <div className={styles.tableContainer}>
@@ -33,7 +37,7 @@ const Table: React.FC<TableProps> = ({}) => {
             <th style={{ width: 150 }}>Tipo de solicitação</th>
             <th>Documento</th>
             <th style={{ width: 140 }}>Status</th>
-            <th style={{ width: 0 }}></th>
+            <th></th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
@@ -53,15 +57,30 @@ const Table: React.FC<TableProps> = ({}) => {
                   Em andamento
                 </Tag>
               </td>
-              <td style={{ width: 0, padding: 0 }}>
-                <div className="teste" style={{ width: 0 }}>
-                  <div>
-                    <button>Visualizar</button>
-                    <button>Compartilhar</button>
-                    <button>Baixar</button>
-                    <button>Rastrear</button>
-                  </div>
-                </div>
+              <td>
+                <Dropdown
+                  overlay={
+                    <Menu
+                      items={[
+                        {
+                          icon: 'invoice',
+                          label: 'Compartilhar',
+                          onClick: () => alert('clicado'),
+                        },
+                        {
+                          label: 'Baixar',
+                          onClick: () => history.push('Teste'),
+                        },
+                        {
+                          label: 'Rastrear',
+                          onClick: () => alert('clicado'),
+                        },
+                      ]}
+                    />
+                  }
+                >
+                  Ações
+                </Dropdown>
               </td>
             </tr>
           ))}

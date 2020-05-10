@@ -1,0 +1,51 @@
+@import '../../app/theme.scss';
+
+.menu {
+  width: 150px;
+  background-color: white;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+
+  position: relative;
+  margin: 0;
+  padding: 4px 0;
+  text-align: left;
+  list-style-type: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 2px;
+  outline: none;
+}
+
+.menuItem {
+  clear: both;
+  margin: 0;
+  padding: 5px 12px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $whiteF5;
+  }
+
+  > span {
+    display: block;
+    margin: -5px -12px;
+    padding: 5px 12px;
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+}
+
+.menuItemDivider {
+  height: 1px;
+  margin: 4px 0;
+  overflow: hidden;
+  line-height: 0;
+  background-color: #f0f0f0;
+}

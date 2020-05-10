@@ -22,3 +22,21 @@ export const useDispatchNotification = () => {
     error: dispatchErrorNotification,
   }
 }
+
+export const useAddDropdownOverlay = () => {
+  const dispatch = useDispatch()
+
+  const addDropdownOverlay = (menuItems: any[], top: number) => {
+    const overlayId = uuidv4()
+    dispatch(
+      uiActions.addDropdown({
+        id: overlayId,
+        menuItems,
+        top,
+      }),
+    )
+  }
+  return {
+    addDropdownOverlay,
+  }
+}

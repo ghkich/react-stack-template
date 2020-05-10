@@ -72,47 +72,9 @@
 
 :global {
   :local(.bodyRow) {
-    .teste {
-      position: relative;
-
-      > div {
-        display: none;
-        background-color: white;
-        position: absolute;
-      }
-    }
     &:hover {
-      .teste {
-        > div {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 500px;
-          height: 70px;
-          top: -35px;
-          right: 0px;
-
-          button {
-            font-size: 14px;
-            background-color: white;
-            color: $primary-color;
-          }
-        }
-      }
-
       td {
         border-color: $primary-color;
-      }
-    }
-
-    &.table-row-active {
-      &:hover:not([disabled]) {
-        border-color: $primary-color;
-      }
-
-      &:focus:not([readonly]) {
-        border: 1px solid $primary-color;
-        box-shadow: 0 0 0 1px $primary-color;
       }
     }
   }

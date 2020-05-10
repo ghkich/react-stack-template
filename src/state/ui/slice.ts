@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { authActions } from '../auth/slice'
 import { useAppState } from '../store'
-import { Notification, UiState } from './types'
+import { DropDownOverlayProps, Notification, UiState } from './types'
 
 export const initialUiState: UiState = {
   notifications: [],
+  dropdowns: [],
 }
 
 const uiSlice = createSlice({
@@ -17,6 +18,12 @@ const uiSlice = createSlice({
     },
     removeNotification: (state, action: PayloadAction<Notification>) => {
       state.notifications.splice(state.notifications.indexOf(action.payload), 1)
+    },
+    addDropdown: (state, action: PayloadAction<DropDownOverlayProps>) => {
+      state.dropdowns.push(action.payload)
+    },
+    removeDropdown: (state, action: PayloadAction<DropDownOverlayProps>) => {
+      state.dropdowns.splice(state.dropdowns.indexOf(action.payload), 1)
     },
   },
   extraReducers: {
