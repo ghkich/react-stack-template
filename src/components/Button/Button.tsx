@@ -3,12 +3,16 @@ import React from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 
 import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
+import Icon, { IconType } from '../Icon/Icon'
 import styles from './Button.module.scss'
 
+declare const ButtonSizes: ['small', 'default', 'large']
 export type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
 interface BaseButtonProps extends Partial<LinkProps> {
   type?: ButtonType
-  icon?: string
+  size?: typeof ButtonSizes[number]
+  icon?: IconType
+  iconPlacement?: 'left' | 'right'
   loading?: boolean
   className?: string
   ghost?: boolean
@@ -34,9 +38,12 @@ const Button: React.FC<ButtonProps> = ({
   href,
   to,
   type,
+  icon,
+  iconPlacement = 'left',
   className,
   loading,
   ghost,
+  size,
   block,
   disabled,
   children,
@@ -44,15 +51,24 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const typeClx = type && `btn-${type}`
   const ghostClx = ghost && 'btn-ghost'
+  const sizeClx = size && `btn-size-${size}`
   const blockClx = block && 'btn-block'
   const loadingClx = loading && 'btn-loading'
 
-  const classNames = clsx([styles.buttonContainer, className, typeClx, ghostClx, blockClx, loadingClx])
+  const classNames = clsx([styles.buttonContainer, className, typeClx, sizeClx, ghostClx, blockClx, loadingClx])
+
+  const buttonChildren = (
+    <>
+      {icon && iconPlacement === 'left' && <Icon type={icon} className={styles.iconPlacementLeft} />}
+      {children}
+      {icon && iconPlacement === 'right' && <Icon type={icon} className={styles.iconPlacementRight} />}
+    </>
+  )
 
   if (href) {
     return (
       <a href={href} className={classNames} {...props}>
-        {children}
+        {buttonChildren}
       </a>
     )
   }
@@ -60,7 +76,7 @@ const Button: React.FC<ButtonProps> = ({
   if (to) {
     return (
       <Link to={to} className={classNames} onMouseDown={(e) => e.preventDefault()} {...props}>
-        {children}
+        {buttonChildren}
       </Link>
     )
   }
@@ -73,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({
       onMouseDown={(e) => e.preventDefault()}
       {...props}
     >
-      {loading ? <IconLoading className={styles.loadingIcon} /> : children}
+      {loading ? <IconLoading className={styles.loadingIcon} /> : buttonChildren}
     </button>
   )
 }

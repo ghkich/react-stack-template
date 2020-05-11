@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
+import { enteringFromRight, springTransition } from '../../utils/animation-utils'
 import ClickAwayListener from '../ClickAwayListener/ClickAwayListener'
 import Portal from '../Portal/Portal'
 import styles from './Dropdown.module.scss'
@@ -18,32 +20,51 @@ const Dropdown: React.FC<DropDownProps> = ({ overlay, children }) => {
     top: 0,
     left: 0,
   })
+  const buttonTrigger = useCallback((node) => {
+    if (node !== null) {
+      const rect = node.getBoundingClientRect()
+      setCoords({
+        left: rect.x,
+        top: rect.y + window.scrollY + rect.height + 5,
+      })
+    }
+  }, [])
   const [overlayVisible, setOverlayVisible] = useState(false)
 
   function handleOnClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const node = e.target as HTMLElement
-    const rect = node.getBoundingClientRect()
-    setCoords({
-      left: rect.x - 105,
-      top: rect.y + window.scrollY + rect.height + 5,
-    })
     setOverlayVisible(!overlayVisible)
   }
 
   return (
     <>
-      <ClickAwayListener onClickAway={() => setOverlayVisible(false)}>
-        <div role="button" onClick={handleOnClick} style={{ cursor: 'pointer', color: '#527edd' }}>
+      <ClickAwayListener
+        onClickAway={() => {
+          setOverlayVisible(false)
+        }}
+      >
+        <div ref={buttonTrigger} role="button" onClick={handleOnClick} style={{ cursor: 'pointer', color: '#527edd' }}>
           {children}
         </div>
+      </ClickAwayListener>
+      <AnimatePresence initial={false}>
         {overlayVisible && (
           <Portal>
             <div className={styles.overlayContainer} style={{ top: coords.top, left: coords.left }}>
-              {overlay}
+              <motion.div
+                key="dropdown"
+                initial="collapsed"
+                animate="open"
+                exit="collapsed"
+                variants={{ collapsed: { opacity: 0, scale: 0.8 }, open: { opacity: 1, scale: 1 } }}
+                transition={{ duration: 0.2 }}
+                style={{ transformOrigin: 'top right' }}
+              >
+                {overlay}
+              </motion.div>
             </div>
           </Portal>
         )}
-      </ClickAwayListener>
+      </AnimatePresence>
     </>
   )
 }

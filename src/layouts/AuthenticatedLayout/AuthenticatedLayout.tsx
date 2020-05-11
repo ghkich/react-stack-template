@@ -3,6 +3,9 @@ import React from 'react'
 
 import { RoutePaths } from '../../app/routes'
 import Button from '../../components/Button/Button'
+import Dropdown from '../../components/Dropdown/Dropdown'
+import Icon from '../../components/Icon/Icon'
+import Menu from '../../components/Menu/Menu'
 import SideNav from '../../components/SideNav/SideNav'
 import { useLogoutRequest } from '../../state/auth/requests'
 import { AuthState } from '../../state/auth/types'
@@ -42,12 +45,26 @@ const AuthenticatedLayout: React.FC<Props> = ({ user, children }) => {
       />
       <div className={styles.content}>
         <div className={styles.topbarContainer}>
-          <h3>
-            {user.name}{' '}
-            <Button type="link" onClick={() => logoutRequest.call()}>
-              Sair
-            </Button>
-          </h3>
+          <Button type="primary" icon="crown" size="small" ghost style={{ marginRight: 15 }}>
+            Seja GOLD
+          </Button>
+          <Dropdown
+            overlay={
+              <Menu
+                items={[
+                  {
+                    label: 'Sair',
+                    onClick: () => {
+                      console.log('teste')
+                      logoutRequest.call()
+                    },
+                  },
+                ]}
+              />
+            }
+          >
+            {user.name} <Icon type="chevron-down" style={{ marginLeft: 5 }} />
+          </Dropdown>
         </div>
         <motion.div
           className={styles.pageContainer}

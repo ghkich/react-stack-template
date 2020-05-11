@@ -74,7 +74,7 @@ const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
             navItem.show && (
               <NavLink key={navItem.id} exact to={navItem.to} className={clsx([styles.navItem, collapsedClx])}>
                 <Icon type={navItem.icon} className={styles.navItemIcon} />
-                {navItem.label}
+                <span>{navItem.label}</span>
               </NavLink>
             ),
         )}

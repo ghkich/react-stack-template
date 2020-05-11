@@ -3,7 +3,10 @@ import React from 'react'
 
 import { ReactComponent as IconChart } from '../../images/icon-chart.svg'
 import { ReactComponent as IconCheckmarkCircle } from '../../images/icon-checkmark-circle.svg'
+import { ReactComponent as IconChevronDown } from '../../images/icon-chevron-down.svg'
+import { ReactComponent as IconChevronUp } from '../../images/icon-chevron-up.svg'
 import { ReactComponent as IconCrossCircle } from '../../images/icon-cross-circle.svg'
+import { ReactComponent as IconCrown } from '../../images/icon-crown.svg'
 import { ReactComponent as IconFolder } from '../../images/icon-folder.svg'
 import { ReactComponent as IconHome } from '../../images/icon-home.svg'
 import { ReactComponent as IconInvoice } from '../../images/icon-invoice.svg'
@@ -24,6 +27,9 @@ export type IconType =
   | 'invoice'
   | 'chart'
   | 'paper-plane'
+  | 'crown'
+  | 'chevron-down'
+  | 'chevron-up'
 
 interface IconProps {
   type: IconType
@@ -60,7 +66,12 @@ const Icon: React.FC<IconProps> = ({ type, className, style }) => {
       return <IconCheckmarkCircle {...iconProps} />
     case 'cross-circle':
       return <IconCrossCircle {...iconProps} />
-
+    case 'crown':
+      return <IconCrown {...iconProps} />
+    case 'chevron-down':
+      return <IconChevronDown {...iconProps} />
+    case 'chevron-up':
+      return <IconChevronUp {...iconProps} />
     default:
       throw new Error('No Icon found for the type informed')
   }

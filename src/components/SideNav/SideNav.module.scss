@@ -57,6 +57,7 @@
 }
 
 .navItem {
+  display: flex;
   height: 40px;
   color: $whiteAE;
   padding: 5px 0;
@@ -74,6 +75,7 @@
 }
 
 .navItemIcon {
+  min-width: 22px;
   font-size: 22px;
   margin: 0 30px 0 12px;
 }

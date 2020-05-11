@@ -10,10 +10,10 @@
   border: 1px solid $default-text-color;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.12s ease, color 0.12s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background-color: rgba($default-text-color, 0.15);
+    background-color: rgba($default-text-color, 0.1);
   }
 }
 

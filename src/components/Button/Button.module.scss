@@ -38,6 +38,10 @@
   }
 }
 
+.iconPlacementLeft {
+  margin-right: 10px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -123,7 +127,11 @@
         box-shadow: none;
       }
     }
+  }
+}
 
+:global {
+  :local(.buttonContainer) {
     &.btn-ghost {
       border: 1px solid $primary-color;
       background-color: transparent;
@@ -134,8 +142,8 @@
       }
 
       &:hover:not([disabled]) {
-        background-color: transparent;
-        box-shadow: 0 5px 10px 0 rgba(0, 128, 255, 0.2);
+        background-color: $whiteE8;
+        box-shadow: none;
       }
 
       &:active:not([disabled]) {
@@ -152,6 +160,16 @@
     &.btn-block {
       width: 100%;
       padding: 0 10px;
+    }
+  }
+}
+
+:global {
+  :local(.buttonContainer) {
+    &.btn-size-small {
+      height: 40px;
+      padding: 0 15px;
+      font-size: 13px;
     }
   }
 }
