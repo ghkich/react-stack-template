@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
@@ -8,6 +9,7 @@ import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
 import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
+import { registerActions } from '../../state/register/slice'
 
 type FormData = {
   cpf: string
@@ -16,11 +18,10 @@ type FormData = {
 const RegisterCpf: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
   const history = useHistory()
+  const dispatch = useDispatch()
   const onSubmit = handleSubmit(({ cpf }) => {
-    history.push({
-      pathname: RoutePaths.REGISTER_CNPJ_2,
-      state: { cpf: cpf },
-    })
+    dispatch(registerActions.setCpf(cpf))
+    history.push(RoutePaths.REGISTER_CPF_2)
   })
 
   return (

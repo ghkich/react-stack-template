@@ -22,24 +22,24 @@ type FormData = {
   password_repeat: string
 }
 
-const RegisterCnpj2: React.FC = () => {
-  const { cnpj } = useRegisterState()
+const RegisterCpf2: React.FC = () => {
+  const { cpf } = useRegisterState()
   const createAccountRequest = useCreateAccount()
   const history = useHistory()
   const [termsAccepted, setTermsAccepted] = useState(false)
   const { handleSubmit, register, watch, errors } = useForm<FormData>()
 
   useEffect(() => {
-    if (!cnpj) {
-      history.push(RoutePaths.REGISTER_CNPJ)
+    if (!cpf) {
+      history.push(RoutePaths.REGISTER_CPF)
     }
-  }, [cnpj])
+  }, [cpf])
 
   const onSubmit = handleSubmit(({ name, email, phone, password }) => {
     createAccountRequest.call({
       customer_name: name,
-      customer_document_number: cnpj,
-      customer_entity_type: 'PJ',
+      customer_document_number: cpf,
+      customer_entity_type: 'PF',
       user_name: name,
       user_email: email,
       user_password: password,
@@ -48,7 +48,7 @@ const RegisterCnpj2: React.FC = () => {
 
   return (
     <LoginLayout
-      customHeader={<RegisterHeader message={`CNPJ: ${cnpj}`} />}
+      customHeader={<RegisterHeader message={`CPF: ${cpf}`} />}
       backgroundMessage={
         <>
           Sem dor de cabeça. <br />
@@ -135,4 +135,4 @@ const RegisterCnpj2: React.FC = () => {
   )
 }
 
-export default RegisterCnpj2
+export default RegisterCpf2

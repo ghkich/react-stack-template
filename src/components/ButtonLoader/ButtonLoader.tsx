@@ -16,6 +16,7 @@ interface ButtonLoaderProps {
   delayResponse?: number
   onSuccess?: () => void
   tabIndex?: number
+  disabled?: boolean
 }
 
 function getButtonPropsByStatus(status: ButtonLoaderStatus) {
@@ -50,6 +51,7 @@ const ButtonLoader: React.FC<ButtonLoaderProps> = ({
   delayResponse = 0,
   onSuccess,
   tabIndex,
+  disabled,
   children,
 }) => {
   const buttonProps = getButtonPropsByStatus(status)
@@ -73,6 +75,7 @@ const ButtonLoader: React.FC<ButtonLoaderProps> = ({
         htmlType="submit"
         block
         tabIndex={tabIndex}
+        disabled={disabled}
       >
         {buttonProps.iconType ? (
           <Icon type={buttonProps.iconType} className={clsx([styles.iconContainer])} />

@@ -20,7 +20,7 @@ const RegisterCnpj: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const onSubmit = handleSubmit(({ cnpj }) => {
-    dispatch(registerActions.setCpf(cnpj))
+    dispatch(registerActions.setCnpj(cnpj))
     history.push(RoutePaths.REGISTER_CNPJ_2)
   })
 

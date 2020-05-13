@@ -19,6 +19,9 @@ const registerSlice = createSlice({
     setCpf: (state, action: PayloadAction<string>) => {
       state.cpf = action.payload
     },
+    setCnpj: (state, action: PayloadAction<string>) => {
+      state.cnpj = action.payload
+    },
   },
 })
 

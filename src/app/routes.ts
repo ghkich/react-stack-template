@@ -9,6 +9,7 @@ import ViewOrder from '../pages/orders/ViewOrder'
 import RegisterCnpj from '../pages/register/RegisterCnpj'
 import RegisterCnpj2 from '../pages/register/RegisterCnpj2'
 import RegisterCpf from '../pages/register/RegisterCpf'
+import RegisterCpf2 from '../pages/register/RegisterCpf2'
 
 export enum RoutePaths {
   REGISTER_CNPJ = '/criar-conta-empresa',
@@ -42,6 +43,10 @@ export const publicRoutes: Route[] = [
   {
     path: RoutePaths.REGISTER_CPF,
     component: RegisterCpf,
+  },
+  {
+    path: RoutePaths.REGISTER_CPF_2,
+    component: RegisterCpf2,
   },
   {
     path: RoutePaths.LOGIN,
