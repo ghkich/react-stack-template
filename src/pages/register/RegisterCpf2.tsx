@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
+import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
 import ButtonLoader from '../../components/ButtonLoader/ButtonLoader'
 import Checkbox from '../../components/Checkbox/Checkbox'
@@ -59,6 +60,14 @@ const RegisterCpf2: React.FC = () => {
       <Title level={2} style={{ marginBottom: 20 }}>
         Crie sua conta de acesso
       </Title>
+      {createAccountRequest.error && (
+        <Alert
+          type="error"
+          message={createAccountRequest.error.message}
+          description={createAccountRequest.error.tip}
+          style={{ marginBottom: 20 }}
+        />
+      )}
       <form onSubmit={onSubmit}>
         <FormItem label="Nome" feedback={errors.name && 'Informe seu nome'}>
           <Input
