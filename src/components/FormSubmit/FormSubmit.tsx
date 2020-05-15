@@ -59,7 +59,7 @@ const FormSubmit: React.FC<FormSubmitProps> = ({
   }, [status])
 
   return (
-    <div ref={formSubmit} className={styles.buttonLoaderContainer} {...props}>
+    <div ref={formSubmit} className={styles.formSubmitContainer} {...props}>
       <Button
         type={buttonType}
         className={clsx(status === 'loading' && 'btn-loading')}
