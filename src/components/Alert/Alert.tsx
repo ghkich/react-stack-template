@@ -4,17 +4,17 @@ import React from 'react'
 import { ReactComponent as IconAlert } from '../../images/icon-alert.svg'
 import styles from './Alert.module.scss'
 
-interface AlertProps extends React.HTMLAttributes<HTMLElement> {
+export interface AlertProps extends React.HTMLAttributes<HTMLElement> {
   type: 'success' | 'warning' | 'error'
   message: string
-  description?: string
+  description?: string | React.ReactNode
 }
 
 const Alert: React.FC<AlertProps> = ({ type, description, message, ...props }) => {
   return (
     <div className={clsx([styles.alertContainer, `alert-${type}`])} {...props}>
       <IconAlert className={styles.alertIcon} />
-      <div>
+      <div className={styles.messageContainer}>
         <span className={clsx([styles.alertMessage, description && 'alert-message-with-description'])}>{message}</span>
         {description && <span className={styles.alertDescription}>{description}</span>}
       </div>

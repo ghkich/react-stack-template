@@ -3,23 +3,27 @@ import { ApiError, ApiStatus } from './types'
 export const ERRORS: Record<string, ApiError> = {
   invalidCredentials: {
     message: 'E-mail ou senha inválidos',
-    tip: 'Por favor, verifique as informações enviadas',
+    description: 'Por favor, verifique as informações enviadas',
   },
-  serverError: {
+  internalServer: {
     message: 'Falha de comunicação com o servidor',
-    tip: 'Tente novamente mais tarde',
+    description: 'Tente novamente mais tarde',
+  },
+  dataValidation: {
+    message: 'Informações inválidas',
+    description: 'Por favor, verifique as informações enviadas',
   },
   unexpected: {
     message: 'Algo inesperado aconteceu',
-    tip: 'Tente novamente mais tarde',
+    description: 'Tente novamente mais tarde',
   },
   forbiddenAccess: {
     message: 'Sem permissão de acesso',
-    tip: 'Fale com o administrador',
+    description: 'Fale com o administrador',
   },
-  queryFailed: {
+  fetchFailed: {
     message: 'Não foi possível carregar essa informação',
-    tip: 'Tente recarregar a página',
+    description: 'Tente recarregar a página',
   },
 }
 
@@ -27,7 +31,7 @@ export const getQueryError = (status: ApiStatus, err: unknown) => {
   let error: ApiError | undefined
 
   if (status === 'error') {
-    error = ERRORS.queryFailed
+    error = ERRORS.fetchFailed
   }
 
   return error

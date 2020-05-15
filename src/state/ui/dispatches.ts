@@ -14,7 +14,7 @@ export const useDispatchNotification = () => {
         id: notificationId,
         type: 'error',
         message: error.message,
-        description: error.tip,
+        description: String(error.description),
       }),
     )
   }

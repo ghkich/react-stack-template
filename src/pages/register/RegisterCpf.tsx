@@ -1,6 +1,6 @@
+import { cpf as cpfUtils } from 'cpf-cnpj-validator'
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { Controller, useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
 import { RoutePaths } from '../../app/routes'
@@ -9,19 +9,17 @@ import FormItem from '../../components/FormItem/FormItem'
 import Input from '../../components/Input/Input'
 import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
-import { registerActions } from '../../state/register/slice'
 
 type FormData = {
   cpf: string
 }
 
 const RegisterCpf: React.FC = () => {
-  const { handleSubmit, register, errors } = useForm<FormData>()
+  const { handleSubmit, control, errors } = useForm<FormData>()
   const history = useHistory()
-  const dispatch = useDispatch()
+
   const onSubmit = handleSubmit(({ cpf }) => {
-    dispatch(registerActions.setCpf(cpf))
-    history.push(RoutePaths.REGISTER_CPF_2)
+    history.push(RoutePaths.REGISTER_CPF + '/' + cpfUtils.strip(cpf, true))
   })
 
   return (
@@ -34,17 +32,23 @@ const RegisterCpf: React.FC = () => {
         </>
       }
     >
+      <Title level={2} style={{ marginBottom: 20 }}>
+        Qual seu CPF?
+      </Title>
       <form onSubmit={onSubmit}>
-        <Title level={2} style={{ marginBottom: 20 }}>
-          Qual seu CPF?
-        </Title>
         <FormItem label="CPF" feedback={errors.cpf && 'Digite um CPF válido'}>
-          <Input
+          <Controller
+            as={Input}
+            control={control}
             name="cpf"
+            mask="999.999.999-99"
             autoComplete="off"
-            ref={register({
-              required: 'Required',
-            })}
+            autoFocus
+            rules={{
+              required: 'Obrigatório',
+              validate: (value) => cpfUtils.isValid(value, true),
+            }}
+            defaultValue=""
           />
         </FormItem>
         <FormItem>

@@ -55,7 +55,7 @@ const SwitchRoutes: React.FC = () => {
   return (
     <Switch location={location} key={location.pathname}>
       {publicRoutes.map((route, i) => (
-        <Route key={i} path={route.path} component={route.component} />
+        <Route key={i} path={route.path} exact={route.exact} component={route.component} />
       ))}
       {authenticatedRoutes.map((route, i) => (
         <AuthtenticatedRoute

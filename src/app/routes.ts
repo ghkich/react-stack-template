@@ -13,9 +13,9 @@ import RegisterCpf2 from '../pages/register/RegisterCpf2'
 
 export enum RoutePaths {
   REGISTER_CNPJ = '/criar-conta-empresa',
-  REGISTER_CNPJ_2 = '/criar-conta-empresa-2',
+  REGISTER_CNPJ_2 = '/criar-conta-empresa/:cnpj',
   REGISTER_CPF = '/criar-conta-pessoal',
-  REGISTER_CPF_2 = '/criar-conta-pessoal-2',
+  REGISTER_CPF_2 = '/criar-conta-pessoal/:cpf',
   LOGIN = '/login',
   HOME = '/',
   ORDERS = '/pedidos',
@@ -33,6 +33,7 @@ interface Route extends RouteProps {
 
 export const publicRoutes: Route[] = [
   {
+    exact: true,
     path: RoutePaths.REGISTER_CNPJ,
     component: RegisterCnpj,
   },
@@ -41,6 +42,7 @@ export const publicRoutes: Route[] = [
     component: RegisterCnpj2,
   },
   {
+    exact: true,
     path: RoutePaths.REGISTER_CPF,
     component: RegisterCpf,
   },

@@ -36,7 +36,7 @@ const ListOrders: React.FC<Props> = (props) => {
       {error && (
         <div>
           <h4>{error.message}</h4>
-          {error.tip && <p>{error.tip}</p>}
+          {error.description && <p>{error.description}</p>}
         </div>
       )}
       {orders && (

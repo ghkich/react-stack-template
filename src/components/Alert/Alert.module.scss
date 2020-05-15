@@ -3,6 +3,7 @@
 .alertContainer {
   display: flex;
   padding: 15px;
+  margin-bottom: 20px;
   border: 1px solid #999;
   border-radius: 2px;
 }
@@ -10,6 +11,10 @@
 .alertIcon {
   font-size: 24px;
   margin-right: 10px;
+}
+
+.messageContainer {
+  width: 100%;
 }
 
 .alertMessage {
@@ -32,6 +37,15 @@
 
       :local(.alertIcon) {
         color: $error-color;
+      }
+    }
+
+    &.alert-success {
+      border-color: $success-color;
+      background-color: $success-bg-color;
+
+      :local(.alertIcon) {
+        color: $success-color;
       }
     }
   }

@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
-import { enteringFromRight, springTransition } from '../../utils/animation-utils'
 import ClickAwayListener from '../ClickAwayListener/ClickAwayListener'
 import Portal from '../Portal/Portal'
 import styles from './Dropdown.module.scss'

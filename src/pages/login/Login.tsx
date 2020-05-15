@@ -2,16 +2,18 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
+import { getUrlParam } from '../../_mock/utils'
 import { RoutePaths } from '../../app/routes'
 import Alert from '../../components/Alert/Alert'
 import Button from '../../components/Button/Button'
-import ButtonLoader from '../../components/ButtonLoader/ButtonLoader'
 import Checkbox from '../../components/Checkbox/Checkbox'
+import FormError from '../../components/FormError/FormError'
 import FormItem from '../../components/FormItem/FormItem'
+import FormSubmit from '../../components/FormSubmit/FormSubmit'
 import Input from '../../components/Input/Input'
 import Title from '../../components/Title/Title'
 import LoginLayout from '../../layouts/LoginLayout/LoginLayout'
-import { useLoginRequest } from '../../state/auth/requests'
+import { useLogin } from '../../state/auth/requests'
 
 type FormData = {
   email: string
@@ -21,12 +23,14 @@ type FormData = {
 
 const Login: React.FC = () => {
   const { handleSubmit, register, errors } = useForm<FormData>()
-  const loginRequest = useLoginRequest()
-  const authenticating = loginRequest.status === 'loading'
+  const login = useLogin()
+  const authenticating = login.status === 'loading'
   const history = useHistory()
 
+  const accountCreated = getUrlParam('conta-criada')
+
   const onSubmit = handleSubmit(async ({ email, password, keepMeLoggedIn }) => {
-    loginRequest.call(email, password, keepMeLoggedIn)
+    login.call(email, password, keepMeLoggedIn)
   })
 
   const hideElementStyle = {
@@ -46,13 +50,9 @@ const Login: React.FC = () => {
       <Title level={2} style={{ marginBottom: 20 }}>
         Accesar sua conta
       </Title>
-      {loginRequest.error && (
-        <Alert
-          type="error"
-          message={loginRequest.error.message}
-          description={loginRequest.error.tip}
-          style={{ marginBottom: 20 }}
-        />
+      {login.error && <FormError error={login.error} />}
+      {accountCreated && (
+        <Alert type="success" message="Conta criada com sucesso" description="Você já pode fazer seu login" />
       )}
       <form onSubmit={onSubmit}>
         <FormItem label="E-mail" feedback={errors.email && 'Informe um e-mail válido'}>
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
               ...hideElementStyle,
             }}
             to={RoutePaths.HOME}
-            tabIndex={5}
+            tabIndex={6}
           >
             Esqueci minha senha
           </Button>
@@ -101,17 +101,17 @@ const Login: React.FC = () => {
             Continuar conectado
           </Checkbox>
         </FormItem>
-        <ButtonLoader
-          status={loginRequest.status}
+        <FormSubmit
+          status={login.status}
           loadingMessage="Verificando credenciais..."
           onSuccess={() => history.push(RoutePaths.HOME)}
         >
           Entrar
-        </ButtonLoader>
+        </FormSubmit>
       </form>
       <p style={{ marginTop: 55, fontSize: 14, lineHeight: '35px', textAlign: 'center', ...hideElementStyle }}>
         <b>Ainda não tem uma conta?</b>{' '}
-        <Button type="link" to={RoutePaths.REGISTER_CNPJ} tabIndex={6}>
+        <Button type="link" to={RoutePaths.REGISTER_CNPJ} tabIndex={5}>
           Crie agora mesmo
         </Button>
       </p>

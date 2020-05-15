@@ -1,87 +1,74 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { HTMLAttributes, useEffect, useRef } from 'react'
 
 import { enteringFromTop } from '../../utils/animation-utils'
-import Button, { ButtonType } from '../Button/Button'
-import Icon, { IconType } from '../Icon/Icon'
-import styles from './ButtonLoader.module.scss'
+import Button from '../Button/Button'
+import Icon from '../Icon/Icon'
+import styles from './FormSubmit.module.scss'
+import { getPropsByStatus } from './getPropsByStatus'
 
-export type ButtonLoaderStatus = 'loading' | 'success' | 'error' | 'idle'
+export type FormSubmitStatus = 'loading' | 'success' | 'error' | 'idle'
 
-interface ButtonLoaderProps {
-  status: ButtonLoaderStatus
+interface FormSubmitProps extends HTMLAttributes<HTMLElement> {
+  status: FormSubmitStatus
   loadingMessage?: string
   successMessage?: string
   delayResponse?: number
   onSuccess?: () => void
+  onError?: () => void
   tabIndex?: number
   disabled?: boolean
 }
 
-function getButtonPropsByStatus(status: ButtonLoaderStatus) {
-  let iconType: IconType | null = null
-  let buttonType: ButtonType = 'primary'
-
-  if (status === 'loading') {
-    iconType = 'loading'
-    buttonType = 'default'
-  }
-
-  if (status === 'success') {
-    iconType = 'checkmark-circle'
-    buttonType = 'success'
-  }
-
-  if (status === 'error') {
-    iconType = 'cross-circle'
-    buttonType = 'danger'
-  }
-
-  return {
-    iconType,
-    buttonType,
-  }
-}
-
-const ButtonLoader: React.FC<ButtonLoaderProps> = ({
+const FormSubmit: React.FC<FormSubmitProps> = ({
   status,
   loadingMessage,
   successMessage,
   delayResponse = 0,
   onSuccess,
+  onError,
   tabIndex,
   disabled,
   children,
+  ...props
 }) => {
-  const buttonProps = getButtonPropsByStatus(status)
+  const { buttonType, iconType } = getPropsByStatus(status)
   const loadingMessageAnimationState = status === 'loading' ? 'enter' : 'exit'
   const successMessageAnimationState = status === 'success' ? 'enter' : 'exit'
 
+  const formSubmit = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
-    if (status === 'success' && onSuccess) {
-      setTimeout(() => {
-        onSuccess()
-      }, delayResponse)
+    if (status === 'loading') {
+      formSubmit.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
+  }, [status, formSubmit])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (status === 'success') {
+        onSuccess && onSuccess()
+      }
+      if (status === 'error') {
+        onError && onError()
+      }
+    }, delayResponse)
+    return () => clearTimeout(timer)
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   return (
-    <div className={styles.buttonLoaderContainer}>
+    <div ref={formSubmit} className={styles.buttonLoaderContainer} {...props}>
       <Button
-        type={buttonProps.buttonType}
+        type={buttonType}
         className={clsx(status === 'loading' && 'btn-loading')}
         htmlType="submit"
         block
         tabIndex={tabIndex}
         disabled={disabled}
       >
-        {buttonProps.iconType ? (
-          <Icon type={buttonProps.iconType} className={clsx([styles.iconContainer])} />
-        ) : (
-          children
-        )}
+        {iconType ? <Icon type={iconType} className={clsx([styles.iconContainer])} /> : children}
       </Button>
       <motion.div
         className={styles.messageContainer}
@@ -103,4 +90,4 @@ const ButtonLoader: React.FC<ButtonLoaderProps> = ({
   )
 }
 
-export default ButtonLoader
+export default FormSubmit

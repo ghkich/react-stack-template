@@ -1,34 +1,37 @@
-import { AxiosResponse } from 'axios'
-import { create } from 'domain'
 import { useState } from 'react'
 
 import API from '../../api/config'
 import { ERRORS } from '../../api/errors'
 import { ApiError, ApiStatus } from '../../api/types'
-import { Account } from './types'
+import { CreateAccount } from './types'
 
 export const useCreateAccount = () => {
-  const [error, setError] = useState<ApiError>()
+  const [error, setError] = useState<ApiError | null>(null)
   const [status, setStatus] = useState<ApiStatus>('idle')
 
-  const call = async (createAccount: Account) => {
+  const call = async (createAccount: CreateAccount) => {
     try {
       setStatus('loading')
-      const response: AxiosResponse<Account> = await API.post('/accounts', createAccount)
+      setError(null)
+      await API.post('/accounts', createAccount)
       setStatus('success')
     } catch (error) {
       setStatus('error')
-      if ([401, 403].includes(error.response?.status)) {
-        setError(ERRORS.invalidCredentials)
+      if ([422].includes(error.response?.status)) {
+        setError({
+          ...ERRORS.dataValidation,
+          description: error.response.data,
+        })
       } else {
-        setError(ERRORS.serverError)
+        setError(ERRORS.internalServer)
       }
     }
   }
 
   return {
     call,
-    status,
     error,
+    status,
+    resetStatus: () => setStatus('idle'),
   }
 }

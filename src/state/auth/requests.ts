@@ -9,7 +9,7 @@ import { removeLocalItem, setLocalItem } from '../../utils/storage-utils'
 import { authActions } from './slice'
 import { AuthState } from './types'
 
-export const useLoginRequest = () => {
+export const useLogin = () => {
   const [error, setError] = useState<ApiError>()
   const [status, setStatus] = useState<ApiStatus>('idle')
   const dispatch = useDispatch()
@@ -29,7 +29,7 @@ export const useLoginRequest = () => {
       if ([401, 403].includes(error.response?.status)) {
         setError(ERRORS.invalidCredentials)
       } else {
-        setError(ERRORS.serverError)
+        setError(ERRORS.internalServer)
       }
     }
   }
