@@ -141,7 +141,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ document }) => {
         loadingMessage="Criando conta..."
         onSuccess={() => history.push(RoutePaths.LOGIN + '?conta-criada=1')}
         onError={() => createAccount.resetStatus()}
-        delayResponse={10000000}
         disabled={!termsAccepted}
         style={{ marginBottom: 75 }}
       >

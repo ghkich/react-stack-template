@@ -10,13 +10,14 @@ import { authActions } from './slice'
 import { AuthState } from './types'
 
 export const useLogin = () => {
-  const [error, setError] = useState<ApiError>()
+  const [error, setError] = useState<ApiError | null>(null)
   const [status, setStatus] = useState<ApiStatus>('idle')
   const dispatch = useDispatch()
 
   const call = async (email: string, password: string, keepMeLoggedIn: boolean) => {
     try {
       setStatus('loading')
+      setError(null)
       const response: AxiosResponse<AuthState> = await API.post(Endpoints.LOGIN, { email, password })
       dispatch(authActions.setAuth(response.data))
       setLocalItem('auth', response.data)
@@ -36,8 +37,9 @@ export const useLogin = () => {
 
   return {
     call,
-    status,
     error,
+    status,
+    resetStatus: () => setStatus('idle'),
   }
 }
 

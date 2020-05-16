@@ -105,6 +105,7 @@ const Login: React.FC = () => {
           status={login.status}
           loadingMessage="Verificando credenciais..."
           onSuccess={() => history.push(RoutePaths.HOME)}
+          onError={() => login.resetStatus()}
         >
           Entrar
         </FormSubmit>
