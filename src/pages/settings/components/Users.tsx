@@ -12,7 +12,7 @@ import {useUsersQuery} from '../../../state/users/queries'
 interface Props {}
 
 const Users: React.FC<Props> = (props) => {
-  const {data: users} = useUsersQuery()
+  const {data: users, status, fetching, error} = useUsersQuery()
 
   return (
     <div>
@@ -45,6 +45,13 @@ const Users: React.FC<Props> = (props) => {
       <Title level={4} as="h2" uppercase>
         Usuários cadastrados
       </Title>
+      {status === 'loading' && <div>Carregando usuários...</div>}
+      {error && (
+        <div>
+          <h4>{error.message}</h4>
+          {error.description && <p>{error.description}</p>}
+        </div>
+      )}
       <table>
         {users?.map((user) => (
           <tr>
@@ -64,6 +71,7 @@ const Users: React.FC<Props> = (props) => {
           </tr>
         ))}
       </table>
+      {fetching ? <span> Fetching...</span> : null}
     </div>
   )
 }
