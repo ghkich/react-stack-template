@@ -1,14 +1,14 @@
 import faker from 'faker'
 
-import { AuthState } from '../state/auth/types'
-import { Order } from '../state/orders/types'
+import {AuthState} from '../state/auth/types'
+import {Order} from '../state/orders/types'
 
 // const blowson = require('blowson')
 
 faker.locale = 'pt_BR'
 const blowson = require('blowson')
 
-export const auth: AuthState = {
+export const fakeAuth: AuthState = {
   access_token: faker.random.alphaNumeric(25),
   can_insert_credits: faker.random.boolean(),
   can_order_document: faker.random.boolean(),
@@ -63,4 +63,4 @@ const extendedOrders = blowson({
   ],
 })
 
-export const orders: Order[] = extendedOrders.data
+export const fakeOrders: Order[] = extendedOrders.data

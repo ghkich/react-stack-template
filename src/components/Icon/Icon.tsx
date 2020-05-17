@@ -1,19 +1,21 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import { ReactComponent as IconChart } from '../../images/icon-chart.svg'
-import { ReactComponent as IconCheckmarkCircle } from '../../images/icon-checkmark-circle.svg'
-import { ReactComponent as IconChevronDown } from '../../images/icon-chevron-down.svg'
-import { ReactComponent as IconChevronUp } from '../../images/icon-chevron-up.svg'
-import { ReactComponent as IconCrossCircle } from '../../images/icon-cross-circle.svg'
-import { ReactComponent as IconCrown } from '../../images/icon-crown.svg'
-import { ReactComponent as IconFolder } from '../../images/icon-folder.svg'
-import { ReactComponent as IconHome } from '../../images/icon-home.svg'
-import { ReactComponent as IconInvoice } from '../../images/icon-invoice.svg'
-import { ReactComponent as IconLoading } from '../../images/icon-loading.svg'
-import { ReactComponent as IconMoney } from '../../images/icon-money.svg'
-import { ReactComponent as IconMenu } from '../../images/icon-nav.svg'
-import { ReactComponent as IconPaperPlane } from '../../images/icon-paper-plane.svg'
+import {ReactComponent as IconChart} from '../../images/icon-chart.svg'
+import {ReactComponent as IconCheckmarkCircle} from '../../images/icon-checkmark-circle.svg'
+import {ReactComponent as IconChevronDown} from '../../images/icon-chevron-down.svg'
+import {ReactComponent as IconChevronUp} from '../../images/icon-chevron-up.svg'
+import {ReactComponent as IconCrossCircle} from '../../images/icon-cross-circle.svg'
+import {ReactComponent as IconCrown} from '../../images/icon-crown.svg'
+import {ReactComponent as IconFolder} from '../../images/icon-folder.svg'
+import {ReactComponent as IconGear} from '../../images/icon-gear.svg'
+import {ReactComponent as IconHelpCircle} from '../../images/icon-help-circle.svg'
+import {ReactComponent as IconHome} from '../../images/icon-home.svg'
+import {ReactComponent as IconInvoice} from '../../images/icon-invoice.svg'
+import {ReactComponent as IconLoading} from '../../images/icon-loading.svg'
+import {ReactComponent as IconMoney} from '../../images/icon-money.svg'
+import {ReactComponent as IconMenu} from '../../images/icon-nav.svg'
+import {ReactComponent as IconPaperPlane} from '../../images/icon-paper-plane.svg'
 import styles from './Icon.module.scss'
 
 export type IconType =
@@ -30,6 +32,8 @@ export type IconType =
   | 'crown'
   | 'chevron-down'
   | 'chevron-up'
+  | 'gear'
+  | 'help-circle'
 
 interface IconProps {
   type: IconType
@@ -37,7 +41,7 @@ interface IconProps {
   style?: React.CSSProperties
 }
 
-const Icon: React.FC<IconProps> = ({ type, className, style }) => {
+const Icon: React.FC<IconProps> = ({type, className, style}) => {
   const loadingClx = type === 'loading' && styles.iconSpinning
 
   const iconProps = {
@@ -72,6 +76,10 @@ const Icon: React.FC<IconProps> = ({ type, className, style }) => {
       return <IconChevronDown {...iconProps} />
     case 'chevron-up':
       return <IconChevronUp {...iconProps} />
+    case 'gear':
+      return <IconGear {...iconProps} />
+    case 'help-circle':
+      return <IconHelpCircle {...iconProps} />
     default:
       throw new Error('No Icon found for the type informed')
   }

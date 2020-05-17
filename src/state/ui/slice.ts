@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-import { authActions } from '../auth/slice'
-import { useAppState } from '../store'
-import { DropDownOverlayProps, Notification, UiState } from './types'
+import {authActions} from '../auth/slice'
+import {useAppState} from '../store'
+import {DropDownOverlayProps, Notification, UiState} from './types'
 
 export const initialUiState: UiState = {
   notifications: [],

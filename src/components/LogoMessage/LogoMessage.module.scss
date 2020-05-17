@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: $normalPadding;
+  padding: $basePadding;
   background-color: $whiteF9;
 
   @media #{$phone-down} {
@@ -13,8 +13,8 @@
 }
 
 .message {
-  margin-left: $normalPadding;
-  padding-left: $normalPadding;
+  margin-left: $basePadding;
+  padding-left: $basePadding;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
 
   @media #{$phone-down} {

@@ -1,7 +1,10 @@
 import React from 'react'
-import { RouteProps } from 'react-router-dom'
+import {RouteProps} from 'react-router-dom'
 
+import Credits from '../pages/credits/Credits'
+import Help from '../pages/help/Help'
 import Home from '../pages/home/Home'
+import Invoices from '../pages/invoices/Invoices'
 import Login from '../pages/login/Login'
 import CreateOrder from '../pages/orders/CreateOrder'
 import Orders from '../pages/orders/Orders'
@@ -10,6 +13,8 @@ import RegisterCnpj from '../pages/register/RegisterCnpj'
 import RegisterCnpj2 from '../pages/register/RegisterCnpj2'
 import RegisterCpf from '../pages/register/RegisterCpf'
 import RegisterCpf2 from '../pages/register/RegisterCpf2'
+import Reports from '../pages/reports/Reports'
+import Settings from '../pages/settings/Settings'
 
 export enum RoutePaths {
   REGISTER_CNPJ = '/criar-conta-empresa',
@@ -18,6 +23,8 @@ export enum RoutePaths {
   REGISTER_CPF_2 = '/criar-conta-pessoal/:cpf',
   LOGIN = '/login',
   HOME = '/',
+  HELP = '/ajuda',
+  SETTINGS = '/configuracoes',
   ORDERS = '/pedidos',
   CREATE_ORDER = '/pedidos/novo',
   VIEW_ORDER = '/pedidos/:id',
@@ -63,6 +70,14 @@ export const authenticatedRoutes: Route[] = [
     component: Home,
   },
   {
+    path: RoutePaths.HELP,
+    component: Help,
+  },
+  {
+    path: RoutePaths.SETTINGS,
+    component: Settings,
+  },
+  {
     exact: true,
     path: RoutePaths.ORDERS,
     component: Orders,
@@ -74,5 +89,17 @@ export const authenticatedRoutes: Route[] = [
   {
     path: RoutePaths.VIEW_ORDER,
     component: ViewOrder,
+  },
+  {
+    path: RoutePaths.INVOICES,
+    component: Invoices,
+  },
+  {
+    path: RoutePaths.CREDITS,
+    component: Credits,
+  },
+  {
+    path: RoutePaths.REPORTS,
+    component: Reports,
   },
 ]

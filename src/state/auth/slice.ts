@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-import { getLocalItem } from '../../utils/storage-utils'
-import { useAppState } from '../store'
-import { AuthState } from './types'
+import {getLocalItem} from '../../utils/storage-utils'
+import {useAppState} from '../store'
+import {AuthState} from './types'
 
-const initialAuth: AuthState = {
+export const initialAuthState: AuthState = {
   access_token: '',
   can_insert_credits: false,
   can_order_document: false,
@@ -20,15 +20,15 @@ const initialAuth: AuthState = {
   phone: '',
 }
 
-const persistedAuth: AuthState = getLocalItem('auth')
-const initialOrPersistedAuth: AuthState = persistedAuth ? persistedAuth : initialAuth
+const persistedAuthState: AuthState = getLocalItem('auth')
+const initialOrPersistedAuth: AuthState = persistedAuthState ? persistedAuthState : initialAuthState
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialOrPersistedAuth,
   reducers: {
     setAuth: (state, action: PayloadAction<AuthState>) => action.payload,
-    removeAuth: () => initialAuth,
+    removeAuth: () => initialAuthState,
   },
 })
 

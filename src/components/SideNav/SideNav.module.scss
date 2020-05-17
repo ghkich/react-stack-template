@@ -3,7 +3,7 @@
 .sideNavContainer {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: $basePadding;
   background-color: $blue4B;
   color: $whiteAE;
   width: 255px;
@@ -53,21 +53,25 @@
 }
 
 .mainNavItem {
+  width: 100%;
   margin: 20px 0;
 }
 
 .navItem {
   display: flex;
+  align-items: center;
   height: 40px;
   color: $whiteAE;
   padding: 5px 0;
-  margin: 5px 0;
+  margin: 8px 0;
+  margin-left: -$basePadding;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-decoration: none;
   will-change: padding-left;
   transition: padding-left 0.15s linear, color 0.15s linear;
+  position: relative;
 
   &:hover {
     color: white;
@@ -77,7 +81,12 @@
 .navItemIcon {
   min-width: 22px;
   font-size: 22px;
-  margin: 0 30px 0 12px;
+  margin: 0 30px 0 40px;
+}
+
+.bottomNavContainer {
+  position: fixed;
+  bottom: 30px;
 }
 
 :global {
@@ -115,6 +124,17 @@
     &.active {
       font-weight: bold;
       color: white;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 100%;
+        background-color: white;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        position: absolute;
+      }
     }
   }
 }

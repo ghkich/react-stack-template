@@ -1,16 +1,11 @@
 import React from 'react'
 
-import ListOrders from '../orders/components/ListOrders'
+import PageLayout from '../../layouts/PageLayout/PageLayout'
 
 interface Props {}
 
 const Home: React.FC<Props> = (props) => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <ListOrders />
-    </div>
-  )
+  return <PageLayout title="Início"></PageLayout>
 }
 
 export default Home

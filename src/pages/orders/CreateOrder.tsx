@@ -1,13 +1,11 @@
 import React from 'react'
 
+import PageLayout from '../../layouts/PageLayout/PageLayout'
+
 interface Props {}
 
 const CreateOrder: React.FC<Props> = (props) => {
-  return (
-    <div>
-      <div>Fazer pedido</div>
-    </div>
-  )
+  return <PageLayout title="Fazer pedido"></PageLayout>
 }
 
 export default CreateOrder

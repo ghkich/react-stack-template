@@ -1,21 +1,23 @@
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
 import styles from './ToggleButton.module.scss'
 
 export interface ToggleButtonProps {
-  startActive?: boolean
+  active?: boolean
   onToggleActive?: (active: boolean) => void
   style?: React.CSSProperties
 }
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({ startActive, onToggleActive, children, style }) => {
-  const [activeState, setActiveState] = useState(startActive)
+const ToggleButton: React.FC<ToggleButtonProps> = ({active, onToggleActive, children, style}) => {
+  const [activeState, setActiveState] = useState(active)
   const activeClx = activeState && `toggle-status-active`
 
   function handleToggleActive() {
-    onToggleActive && onToggleActive(!activeState)
-    setActiveState(!activeState)
+    if (onToggleActive) {
+      onToggleActive(!activeState)
+      setActiveState(!activeState)
+    }
   }
 
   return (

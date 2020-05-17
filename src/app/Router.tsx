@@ -1,26 +1,26 @@
 import React from 'react'
-import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocation } from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Route, RouteProps, Switch, useLocation} from 'react-router-dom'
 
 import AuthenticatedLayout from '../layouts/AuthenticatedLayout/AuthenticatedLayout'
-import { useAuthState } from '../state/auth/slice'
-import { authenticatedRoutes, publicRoutes, RoutePaths } from './routes'
+import {useAuthState} from '../state/auth/slice'
+import {authenticatedRoutes, publicRoutes, RoutePaths} from './routes'
 
 interface AuthtenticatedRouteProps extends RouteProps {
   authenticated: boolean
   permitted?: boolean
 }
 
-const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({ children, authenticated, permitted, ...props }) => {
+const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({children, authenticated, permitted, ...props}) => {
   return (
     <Route
       {...props}
-      render={({ location }) => {
+      render={({location}) => {
         if (!authenticated) {
           return (
             <Redirect
               to={{
                 pathname: RoutePaths.LOGIN,
-                state: { from: location },
+                state: {from: location},
               }}
             />
           )
@@ -31,7 +31,7 @@ const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({ children, aut
             <Redirect
               to={{
                 pathname: RoutePaths.HOME,
-                state: { from: location },
+                state: {from: location},
               }}
             />
           )
@@ -43,7 +43,7 @@ const AuthtenticatedRoute: React.FC<AuthtenticatedRouteProps> = ({ children, aut
   )
 }
 
-const SwitchRoutes: React.FC = () => {
+export const SwitchRoutes: React.FC = () => {
   const authState = useAuthState()
   const isAuthenticated = authState.access_token !== ''
   const location = useLocation()
@@ -53,7 +53,7 @@ const SwitchRoutes: React.FC = () => {
   }
 
   return (
-    <Switch location={location} key={location.pathname}>
+    <Switch>
       {publicRoutes.map((route, i) => (
         <Route key={i} path={route.path} exact={route.exact} component={route.component} />
       ))}
@@ -70,7 +70,7 @@ const SwitchRoutes: React.FC = () => {
           </AuthenticatedLayout>
         </AuthtenticatedRoute>
       ))}
-      <Redirect to={{ pathname: isAuthenticated ? RoutePaths.HOME : RoutePaths.LOGIN, state: { from: location } }} />
+      <Redirect to={{pathname: isAuthenticated ? RoutePaths.HOME : RoutePaths.LOGIN, state: {from: location}}} />
     </Switch>
   )
 }

@@ -39,4 +39,10 @@
       }
     }
   }
+
+  :local(.childrenContainer) {
+    &.form-flex {
+      display: flex;
+    }
+  }
 }

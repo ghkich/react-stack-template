@@ -1,15 +1,15 @@
 import clsx from 'clsx'
-import { motion } from 'framer-motion'
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import {motion} from 'framer-motion'
+import React, {useState} from 'react'
+import {NavLink} from 'react-router-dom'
 
-import { RoutePaths } from '../../app/routes'
-import { ReactComponent as LogoCBRDocLettering } from '../../images/logo-cbrdoc-lettering.svg'
-import { ReactComponent as LogoCBRDocSymbol } from '../../images/logo-cbrdoc-symbol.svg'
-import { springTransition } from '../../utils/animation-utils'
-import { getLocalItem, setLocalItem } from '../../utils/storage-utils'
+import {RoutePaths} from '../../app/routes'
+import {ReactComponent as LogoCBRDocLettering} from '../../images/logo-cbrdoc-lettering.svg'
+import {ReactComponent as LogoCBRDocSymbol} from '../../images/logo-cbrdoc-symbol.svg'
+import {springTransition} from '../../utils/animation-utils'
+import {getLocalItem, setLocalItem} from '../../utils/storage-utils'
 import Button from '../Button/Button'
-import Icon, { IconType } from '../Icon/Icon'
+import Icon, {IconType} from '../Icon/Icon'
 import styles from './SideNav.module.scss'
 
 interface NavItem {
@@ -34,7 +34,7 @@ const navCollapsing = {
   },
 }
 
-const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
+const SideNav: React.FC<SideNavProps> = ({mainNavItem, navItems}) => {
   const [navCollapsed, setNavCollapsed] = useState(getLocalItem('navCollapsed') ? true : false)
   const collapsedClx = navCollapsed && 'nav-collapsed'
 
@@ -65,8 +65,8 @@ const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
       <div className={styles.navItemsContainer}>
         {mainNavItem && (
           <Button type="primary" to={mainNavItem.to} className={styles.mainNavItem} block>
-            {!navCollapsed && <span style={{ marginRight: 8 }}>{mainNavItem.label}</span>}
-            <Icon type={mainNavItem.icon} style={{ fontSize: '1.25em' }} />
+            {!navCollapsed && <span style={{marginRight: 8}}>{mainNavItem.label}</span>}
+            <Icon type={mainNavItem.icon} style={{fontSize: '1.25em'}} />
           </Button>
         )}
         {navItems.map(
@@ -74,10 +74,18 @@ const SideNav: React.FC<SideNavProps> = ({ mainNavItem, navItems }) => {
             navItem.show && (
               <NavLink key={navItem.id} exact to={navItem.to} className={clsx([styles.navItem, collapsedClx])}>
                 <Icon type={navItem.icon} className={styles.navItemIcon} />
-                <span>{navItem.label}</span>
+                <div>{navItem.label}</div>
               </NavLink>
             ),
         )}
+        <div className={styles.bottomNavContainer}>
+          <NavLink to={RoutePaths.HELP} className={clsx([styles.navItem, collapsedClx])}>
+            <Icon type="help-circle" className={styles.navItemIcon} />
+          </NavLink>
+          <NavLink to={RoutePaths.SETTINGS} className={clsx([styles.navItem, collapsedClx])}>
+            <Icon type="gear" className={styles.navItemIcon} />
+          </NavLink>
+        </div>
       </div>
     </motion.div>
   )
