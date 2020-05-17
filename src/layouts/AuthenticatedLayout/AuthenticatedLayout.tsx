@@ -55,7 +55,6 @@ const AuthenticatedLayout: React.FC<Props> = ({user, children}) => {
                   {
                     label: 'Sair',
                     onClick: () => {
-                      console.log('teste')
                       logoutRequest.call()
                     },
                   },

@@ -8,7 +8,7 @@ import Input from '../../../components/Input/Input'
 import Text from '../../../components/Text/Text'
 import Title from '../../../components/Title/Title'
 import ToggleButton from '../../../components/ToggleButton/ToggleButton'
-import {useAddUser, useUpdateUser, useUsersQuery} from '../../../state/users/queries'
+import {useAddUser, useDeleteUser, useUpdateUser, useUsersQuery} from '../../../state/users/queries'
 
 interface Props {}
 
@@ -26,6 +26,7 @@ const Users: React.FC<Props> = (props) => {
   const {data: users, status, fetching, error} = useUsersQuery()
   const addUser = useAddUser()
   const updateUser = useUpdateUser()
+  const deleteUser = useDeleteUser()
 
   const onSubmit = handleSubmit(({email}) => {
     addUser.call({
@@ -117,7 +118,17 @@ const Users: React.FC<Props> = (props) => {
               </ToggleButton>
             </td>
             <td>
-              <Button type="primary" size="small" icon="folder" ghost>
+              <Button
+                type="primary"
+                size="small"
+                icon="folder"
+                ghost
+                onClick={() => {
+                  if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
+                    deleteUser.call(user.id)
+                  }
+                }}
+              >
                 Excluir usuário
               </Button>
             </td>

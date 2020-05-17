@@ -87,3 +87,33 @@ export const useUpdateUser = () => {
     resetStatus: () => setStatus('idle'),
   }
 }
+
+export const useDeleteUser = () => {
+  const [error, setError] = useState<ApiError | null>(null)
+  const [status, setStatus] = useState<ApiStatus>('idle')
+
+  const call = async (userId: number) => {
+    try {
+      setStatus('loading')
+      setError(null)
+      await API.delete(`/users/${userId}`, {
+        headers: {...setAuthorizationHeader()},
+      })
+      setStatus('success')
+    } catch (error) {
+      setStatus('error')
+      if ([401, 403].includes(error.response?.status)) {
+        setError(ERRORS.invalidCredentials)
+      } else {
+        setError(ERRORS.internalServer)
+      }
+    }
+  }
+
+  return {
+    call,
+    error,
+    status,
+    resetStatus: () => setStatus('idle'),
+  }
+}
