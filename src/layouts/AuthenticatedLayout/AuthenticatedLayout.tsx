@@ -8,12 +8,12 @@ import Icon from '../../components/Icon/Icon'
 import Menu from '../../components/Menu/Menu'
 import SideNav from '../../components/SideNav/SideNav'
 import {useLogoutRequest} from '../../state/auth/requests'
-import {AuthState} from '../../state/auth/types'
+import {User} from '../../state/users/types'
 import {enteringFromOpacity} from '../../utils/animation-utils'
 import styles from './AuthenticatedLayout.module.scss'
 
 interface Props {
-  user: AuthState
+  user: User
 }
 
 const AuthenticatedLayout: React.FC<Props> = ({user, children}) => {
@@ -27,18 +27,18 @@ const AuthenticatedLayout: React.FC<Props> = ({user, children}) => {
           icon: 'paper-plane',
           label: 'Fazer pedido',
           to: RoutePaths.CREATE_ORDER,
-          show: user.can_order_document,
+          show: user.can_order_services,
         }}
         navItems={[
           {id: 'home', icon: 'home', label: 'Início', to: RoutePaths.HOME, show: true},
-          {id: 'orders', icon: 'folder', label: 'Meus pedidos', to: RoutePaths.ORDERS, show: user.can_order_document},
+          {id: 'orders', icon: 'folder', label: 'Meus pedidos', to: RoutePaths.ORDERS, show: user.can_order_services},
           {id: 'credits', icon: 'money', label: 'Créditos', to: RoutePaths.CREDITS, show: user.can_insert_credits},
           {
             id: 'invoices',
             icon: 'invoice',
             label: 'Faturas',
             to: RoutePaths.INVOICES,
-            show: user.can_see_financial_transactions,
+            show: user.can_see_invoices,
           },
           {id: 'reports', icon: 'chart', label: 'Relatórios', to: RoutePaths.REPORTS, show: user.can_see_reports},
         ]}

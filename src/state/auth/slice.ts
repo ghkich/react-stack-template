@@ -6,9 +6,9 @@ import {AuthState} from './types'
 
 export const initialAuthState: AuthState = {
   access_token: '',
+  can_order_services: false,
   can_insert_credits: false,
-  can_order_document: false,
-  can_see_financial_transactions: false,
+  can_see_invoices: false,
   can_see_reports: false,
   customer_id: 0,
   email: '',

@@ -1,13 +1,13 @@
-import { AxiosResponse } from 'axios'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import {AxiosResponse} from 'axios'
+import {useState} from 'react'
+import {useDispatch} from 'react-redux'
 
 import API from '../../api/config'
-import { ERRORS } from '../../api/errors'
-import { ApiError, ApiStatus, Endpoints } from '../../api/types'
-import { removeLocalItem, setLocalItem } from '../../utils/storage-utils'
-import { authActions } from './slice'
-import { AuthState } from './types'
+import {ERRORS} from '../../api/errors'
+import {ApiError, ApiStatus, Endpoints} from '../../api/types'
+import {removeLocalItem, setLocalItem} from '../../utils/storage-utils'
+import {authActions} from './slice'
+import {AuthState} from './types'
 
 export const useLogin = () => {
   const [error, setError] = useState<ApiError | null>(null)
@@ -18,7 +18,7 @@ export const useLogin = () => {
     try {
       setStatus('loading')
       setError(null)
-      const response: AxiosResponse<AuthState> = await API.post(Endpoints.LOGIN, { email, password })
+      const response: AxiosResponse<AuthState> = await API.post(Endpoints.LOGIN, {email, password})
       dispatch(authActions.setAuth(response.data))
       setLocalItem('auth', response.data)
       setStatus('success')

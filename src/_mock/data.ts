@@ -11,8 +11,8 @@ const blowson = require('blowson')
 export const fakeAuth: AuthState = {
   access_token: faker.random.alphaNumeric(25),
   can_insert_credits: faker.random.boolean(),
-  can_order_document: faker.random.boolean(),
-  can_see_financial_transactions: faker.random.boolean(),
+  can_order_services: faker.random.boolean(),
+  can_see_invoices: faker.random.boolean(),
   can_see_reports: faker.random.boolean(),
   customer_id: faker.random.number(10),
   email: faker.internet.email(),
