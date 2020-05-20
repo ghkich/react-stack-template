@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.dropdownTrigger {
+  cursor: pointer;
+}
+
 .overlayContainer {
   position: absolute;
   top: -9999px;

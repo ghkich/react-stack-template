@@ -16,6 +16,7 @@ import {ReactComponent as IconLoading} from '../../images/icon-loading.svg'
 import {ReactComponent as IconMoney} from '../../images/icon-money.svg'
 import {ReactComponent as IconMenu} from '../../images/icon-nav.svg'
 import {ReactComponent as IconPaperPlane} from '../../images/icon-paper-plane.svg'
+import {ReactComponent as IconTrash} from '../../images/icon-trash.svg'
 import styles from './Icon.module.scss'
 
 export type IconType =
@@ -34,6 +35,7 @@ export type IconType =
   | 'chevron-up'
   | 'gear'
   | 'help-circle'
+  | 'trash'
 
 interface IconProps {
   type: IconType
@@ -80,6 +82,8 @@ const Icon: React.FC<IconProps> = ({type, className, style}) => {
       return <IconGear {...iconProps} />
     case 'help-circle':
       return <IconHelpCircle {...iconProps} />
+    case 'trash':
+      return <IconTrash {...iconProps} />
     default:
       throw new Error('No Icon found for the type informed')
   }

@@ -1,12 +1,12 @@
 import clsx from 'clsx'
-import { motion } from 'framer-motion'
-import React, { HTMLAttributes, useEffect, useRef } from 'react'
+import {motion} from 'framer-motion'
+import React, {HTMLAttributes, useEffect, useRef} from 'react'
 
-import { enteringFromTop } from '../../utils/animation-utils'
+import {enteringFromTop} from '../../utils/animation-utils'
 import Button from '../Button/Button'
 import Icon from '../Icon/Icon'
 import styles from './FormSubmit.module.scss'
-import { getPropsByStatus } from './getPropsByStatus'
+import {getPropsByStatus} from './getPropsByStatus'
 
 export type FormSubmitStatus = 'loading' | 'success' | 'error' | 'idle'
 
@@ -33,7 +33,13 @@ const FormSubmit: React.FC<FormSubmitProps> = ({
   children,
   ...props
 }) => {
-  const { buttonType, iconType } = getPropsByStatus(status)
+  let buttonStatus = status
+  if (delayResponse === 0) {
+    if (status === 'error' || status === 'success') {
+      buttonStatus = 'idle'
+    }
+  }
+  const {buttonType, iconType} = getPropsByStatus(buttonStatus)
   const loadingMessageAnimationState = status === 'loading' ? 'enter' : 'exit'
   const successMessageAnimationState = status === 'success' ? 'enter' : 'exit'
 
@@ -41,7 +47,7 @@ const FormSubmit: React.FC<FormSubmitProps> = ({
 
   useEffect(() => {
     if (status === 'loading') {
-      formSubmit.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+      formSubmit.current?.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
     }
   }, [status, formSubmit])
 

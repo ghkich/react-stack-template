@@ -2,7 +2,7 @@ import {motion} from 'framer-motion'
 import React from 'react'
 
 import {RoutePaths} from '../../app/routes'
-import Button from '../../components/Button/Button'
+import Avatar from '../../components/Avatar/Avatar'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import Icon from '../../components/Icon/Icon'
 import Menu from '../../components/Menu/Menu'
@@ -45,9 +45,9 @@ const AuthenticatedLayout: React.FC<Props> = ({user, children}) => {
       />
       <div className={styles.content}>
         <div className={styles.topbarContainer}>
-          <Button type="primary" icon="crown" size="small" ghost style={{marginRight: 15}}>
+          {/* <Button type="primary" icon="crown" size="small" ghost style={{marginRight: 15}}>
             Seja GOLD
-          </Button>
+          </Button> */}
           <Dropdown
             overlay={
               <Menu
@@ -62,7 +62,7 @@ const AuthenticatedLayout: React.FC<Props> = ({user, children}) => {
               />
             }
           >
-            {user.name} <Icon type="chevron-down" style={{marginLeft: 5}} />
+            <Avatar username={user.name} /> <Icon type="chevron-down" style={{marginLeft: 5}} />
           </Dropdown>
         </div>
         <motion.div

@@ -1,0 +1,14 @@
+@import '../../app/theme.scss';
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+:global {
+  :local(.formContainer) {
+    &.form-horizontal {
+      flex-direction: row;
+    }
+  }
+}

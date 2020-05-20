@@ -9,7 +9,7 @@ type TitleContainerProps = {
 }
 
 export const TitleContainer = styled.h1(({level, uppercase}: TitleContainerProps) => ({
-  fontWeight: 200,
+  fontWeight: 'normal',
   fontSize: fontSizes[level - 1],
   textTransform: uppercase ? 'uppercase' : 'none',
 }))

@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import Alert from '../../../components/Alert/Alert'
+import Avatar from '../../../components/Avatar/Avatar'
 import Button from '../../../components/Button/Button'
+import Form from '../../../components/Form/Form'
+import FormError from '../../../components/FormError/FormError'
 import FormItem from '../../../components/FormItem/FormItem'
 import FormSubmit from '../../../components/FormSubmit/FormSubmit'
 import Input from '../../../components/Input/Input'
@@ -9,11 +13,14 @@ import Text from '../../../components/Text/Text'
 import Title from '../../../components/Title/Title'
 import ToggleButton from '../../../components/ToggleButton/ToggleButton'
 import {useAddUser, useDeleteUser, useUpdateUser, useUsersQuery} from '../../../state/users/queries'
+import styles from './Users.module.scss'
 
 interface Props {}
 
 type FormData = {
   email: string
+  name: string
+  password: string
 }
 
 const Users: React.FC<Props> = (props) => {
@@ -22,18 +29,21 @@ const Users: React.FC<Props> = (props) => {
   const [canSeeInvoices, setCanSeeInvoices] = useState(0)
   const [canSeeReports, setCanSeeReports] = useState(0)
   const [isAdmin, setIsAdmin] = useState(0)
-  const {handleSubmit, register} = useForm<FormData>()
+  const {handleSubmit, register, errors} = useForm<FormData>()
   const {data: users, status, fetching, error} = useUsersQuery()
   const addUser = useAddUser()
   const updateUser = useUpdateUser()
   const deleteUser = useDeleteUser()
 
-  const onSubmit = handleSubmit(({email}) => {
+  const onSubmit = handleSubmit(({email, name, password}) => {
+    if (canInsertCredits) {
+      console.log('teste')
+    }
     addUser.call({
       email,
-      password: '123',
-      phone: '229999293929',
-      name: 'sem nome',
+      name,
+      password,
+      phone: '',
       can_insert_credits: canInsertCredits,
       can_see_reports: canSeeReports,
       can_see_invoices: canSeeInvoices,
@@ -44,7 +54,6 @@ const Users: React.FC<Props> = (props) => {
 
   return (
     <div>
-      {addUser.error && <p>{addUser.error.description}</p>}
       <Title level={4} as="h2" uppercase>
         Adicionar usuários
       </Title>
@@ -55,9 +64,41 @@ const Users: React.FC<Props> = (props) => {
         </Button>{' '}
         para conhecer nosso atendimento exclusivo para empresas.
       </Text>
-      <form style={{display: 'flex'}} onSubmit={onSubmit}>
-        <FormItem label="Novo usuário" style={{flex: 1}}>
-          <Input name="email" ref={register()} placeholder="E-mail" />
+      {addUser.error && <FormError error={addUser.error} />}
+      {addUser.status === 'success' && (
+        <Alert type="success" message="Usuário adicionado com sucesso" description="Ele já pode fazer o login" />
+      )}
+      <Form orientation="horizontal" onSubmit={onSubmit}>
+        <FormItem label="Email" feedback={errors.email && 'Informe um e-mail válido'}>
+          <Input
+            name="email"
+            ref={register({
+              required: 'Required',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'invalid email address',
+              },
+            })}
+            placeholder="E-mail"
+          />
+        </FormItem>
+        <FormItem label="Nome" feedback={errors.name && 'Informe o nome do novo usuário'}>
+          <Input
+            name="name"
+            ref={register({
+              required: 'Required',
+            })}
+            placeholder="Nome"
+          />
+        </FormItem>
+        <FormItem label="Senha" feedback={errors.password && 'Informe uma senha para o usuário'}>
+          <Input
+            name="password"
+            ref={register({
+              required: 'Required',
+            })}
+            placeholder="Senha"
+          />
         </FormItem>
         <FormItem label="Permissões" flex>
           <ToggleButton onToggleActive={(active) => setIsAdmin(active ? 1 : 0)}>Administrador</ToggleButton>
@@ -66,12 +107,12 @@ const Users: React.FC<Props> = (props) => {
           <ToggleButton onToggleActive={(active) => setCanSeeInvoices(active ? 1 : 0)}>Emitir faturas</ToggleButton>
           <ToggleButton onToggleActive={(active) => setCanSeeReports(active ? 1 : 0)}>Ver relatórios</ToggleButton>
         </FormItem>
-        <FormSubmit status={addUser.status} style={{width: 175}}>
+        <FormSubmit status={addUser.status} style={{minWidth: 175}}>
           Adicionar
         </FormSubmit>
-      </form>
-      <hr />
-      <Title level={4} as="h2" uppercase>
+      </Form>
+      <hr style={{marginBottom: 20}} />
+      <Title level={4} as="h2" style={{marginBottom: 20}} uppercase>
         Usuários cadastrados
       </Title>
       {status === 'loading' && <div>Carregando usuários...</div>}
@@ -81,11 +122,16 @@ const Users: React.FC<Props> = (props) => {
           {error.description && <p>{error.description}</p>}
         </div>
       )}
-      <table>
+      <div className={styles.usersListContainer}>
         {users?.map((user) => (
-          <tr>
-            <td>{user.name}</td>
-            <td>
+          <div key={user.id} className={styles.usersListRow}>
+            <div className={styles.usersListCol} style={{marginRight: 10}}>
+              <Avatar username={user.name} />
+            </div>
+            <div className={styles.usersListCol} style={{width: 220}}>
+              {user.name}
+            </div>
+            <div className={styles.usersListCol} style={{flex: 1}}>
               <ToggleButton
                 active={user.is_admin}
                 onToggleActive={(active) => updateUser.call(user.id, {is_admin: active ? 1 : 0})}
@@ -116,12 +162,12 @@ const Users: React.FC<Props> = (props) => {
               >
                 Ver relatórios
               </ToggleButton>
-            </td>
-            <td>
+            </div>
+            <div className={styles.usersListCol}>
               <Button
                 type="primary"
                 size="small"
-                icon="folder"
+                icon="trash"
                 ghost
                 onClick={() => {
                   if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
@@ -131,11 +177,10 @@ const Users: React.FC<Props> = (props) => {
               >
                 Excluir usuário
               </Button>
-            </td>
-          </tr>
+            </div>
+          </div>
         ))}
-      </table>
-      {fetching ? <span> Fetching...</span> : null}
+      </div>
     </div>
   )
 }

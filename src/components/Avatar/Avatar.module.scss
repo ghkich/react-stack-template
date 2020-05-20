@@ -1,0 +1,13 @@
+@import '../../app/theme.scss';
+
+.avatarContainer {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: $grayE8;
+}

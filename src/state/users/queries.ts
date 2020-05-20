@@ -41,8 +41,11 @@ export const useAddUser = () => {
       setStatus('success')
     } catch (error) {
       setStatus('error')
-      if ([401, 403].includes(error.response?.status)) {
-        setError(ERRORS.invalidCredentials)
+      if ([422].includes(error.response?.status)) {
+        setError({
+          ...ERRORS.dataValidation,
+          description: error.response.data,
+        })
       } else {
         setError(ERRORS.internalServer)
       }
@@ -71,9 +74,11 @@ export const useUpdateUser = () => {
       })
       setStatus('success')
     } catch (error) {
-      setStatus('error')
-      if ([401, 403].includes(error.response?.status)) {
-        setError(ERRORS.invalidCredentials)
+      if ([422].includes(error.response?.status)) {
+        setError({
+          ...ERRORS.dataValidation,
+          description: error.response.data,
+        })
       } else {
         setError(ERRORS.internalServer)
       }
@@ -102,8 +107,11 @@ export const useDeleteUser = () => {
       setStatus('success')
     } catch (error) {
       setStatus('error')
-      if ([401, 403].includes(error.response?.status)) {
-        setError(ERRORS.invalidCredentials)
+      if ([422].includes(error.response?.status)) {
+        setError({
+          ...ERRORS.dataValidation,
+          description: error.response.data,
+        })
       } else {
         setError(ERRORS.internalServer)
       }

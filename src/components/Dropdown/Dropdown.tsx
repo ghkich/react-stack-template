@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import React, { useCallback, useState } from 'react'
+import {AnimatePresence, motion} from 'framer-motion'
+import React, {useCallback, useState} from 'react'
 
 import ClickAwayListener from '../ClickAwayListener/ClickAwayListener'
 import Portal from '../Portal/Portal'
@@ -14,7 +14,7 @@ interface DropDownProps {
   className?: string
 }
 
-const Dropdown: React.FC<DropDownProps> = ({ overlay, children }) => {
+const Dropdown: React.FC<DropDownProps> = ({overlay, children}) => {
   const [coords, setCoords] = useState({
     top: 0,
     left: 0,
@@ -23,7 +23,7 @@ const Dropdown: React.FC<DropDownProps> = ({ overlay, children }) => {
     if (node !== null) {
       const rect = node.getBoundingClientRect()
       setCoords({
-        left: rect.x,
+        left: rect.x - 100,
         top: rect.y + window.scrollY + rect.height + 5,
       })
     }
@@ -41,22 +41,22 @@ const Dropdown: React.FC<DropDownProps> = ({ overlay, children }) => {
           setOverlayVisible(false)
         }}
       >
-        <div ref={buttonTrigger} role="button" onClick={handleOnClick} style={{ cursor: 'pointer', color: '#527edd' }}>
+        <div ref={buttonTrigger} role="button" onClick={handleOnClick} className={styles.dropdownTrigger}>
           {children}
         </div>
       </ClickAwayListener>
       <AnimatePresence initial={false}>
         {overlayVisible && (
           <Portal>
-            <div className={styles.overlayContainer} style={{ top: coords.top, left: coords.left }}>
+            <div className={styles.overlayContainer} style={{top: coords.top, left: coords.left}}>
               <motion.div
                 key="dropdown"
                 initial="collapsed"
                 animate="open"
                 exit="collapsed"
-                variants={{ collapsed: { opacity: 0, scale: 0.8 }, open: { opacity: 1, scale: 1 } }}
-                transition={{ duration: 0.2 }}
-                style={{ transformOrigin: 'top right' }}
+                variants={{collapsed: {opacity: 0, scale: 0.8}, open: {opacity: 1, scale: 1}}}
+                transition={{duration: 0.2}}
+                style={{transformOrigin: 'top right'}}
               >
                 {overlay}
               </motion.div>
